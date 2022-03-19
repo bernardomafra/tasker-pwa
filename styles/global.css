@@ -1,7 +1,30 @@
 @import 'colors.css';
 @import 'font.css';
+@import 'layout.css';
+@import 'home.css';
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   background-color: var(--dark-blue);
   color: var(--text-white);
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+  transition: 0.2s;
 }
