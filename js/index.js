@@ -2,24 +2,16 @@ function loadCss() {
   document.body.style.visibility = 'visible';
 }
 
-<<<<<<< HEAD
 window.addEventListener('load', () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('service-worker.js')
+      .then((res) => console.log('service worker registered'))
+      .catch((err) => console.log('service worker not registered', err));
+  }
   // Inicialize o deferredPrompt para posteriormente mostrar o prompt de instalação do navegador.
   let deferredPrompt;
   let pwaInstallButton = document.getElementById('btn-install-pwa');
-=======
-// Inicialize o deferredPrompt para posteriormente mostrar o prompt de instalação do navegador.
-let deferredPrompt;
-let pwaInstallButton = document.getElementById('btn-install-pwa');
-
-function showInstallPromotion() {
-  pwaInstallButton.style.display = 'block';
-}
-
-function hideInstallPromotion() {
-  pwaInstallButton.style.display = 'none';
-}
->>>>>>> c63af1f9ca873a7f30f41457e36cec7bf60aadb5
 
   function showInstallPromotion() {
     pwaInstallButton.style.display = 'block';
