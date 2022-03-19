@@ -1,4 +1,4 @@
-window.addEventListener('beforeinstallprompt', (e) => {
+self.addEventListener('beforeinstallprompt', (e) => {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
   // Stash the event so it can be triggered later.
@@ -23,7 +23,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
   });
 });
 
-window.addEventListener('install', function (event) {
+self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open('pwa-cache').then(function (cache) {
       return cache.add('index.html');
@@ -31,7 +31,7 @@ window.addEventListener('install', function (event) {
   );
 });
 
-window.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function (event) {
   event.repondWith(
     caches.match(event.request).then(function (response) {
       return response || fetch(event.request);
