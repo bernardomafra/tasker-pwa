@@ -2,7 +2,6 @@
   "name": "TaskeR",
   "short_name": "TaskeR",
   "start_url": "https://bernardomafra.github.io/tasker-pwa/",
-  "scope": "/",
   "display": "standalone",
   "theme_color": "#289dd2",
   "background_color": "#26404d",
