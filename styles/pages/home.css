@@ -1,0 +1,21 @@
+body {
+  margin: 0px;
+}
+
+div#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+div#home header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+div#home header small {
+  font-size: var(--font-size-07);
+  opacity: 0.8;
+}

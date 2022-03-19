@@ -1,7 +1,6 @@
 @import 'colors.css';
 @import 'font.css';
 @import 'layout.css';
-@import 'home.css';
 
 * {
   box-sizing: border-box;
@@ -10,12 +9,18 @@
 body {
   background-color: var(--dark-blue);
   color: var(--text-white);
+  margin: 0px 1.2rem;
 }
 
 html,
 body {
   height: 100%;
   overflow: hidden;
+}
+
+input:not([type='submit']) {
+  border: none;
+  outline: none;
 }
 
 button {
@@ -27,4 +32,24 @@ button {
 button:hover {
   opacity: 0.85;
   transition: 0.2s;
+}
+
+.title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-01);
+  margin-bottom: 1rem;
+}
+
+.primary-btn {
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: var(--font-size-07);
+  background-color: var(--light-blue);
+  color: var(--text-white);
+  padding: 1rem;
+  border: none;
+  border-radius: var(--rounded-01);
+  width: 100%;
 }
