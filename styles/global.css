@@ -1,0 +1,7 @@
+@import 'colors.css';
+@import 'font.css';
+
+body {
+  background-color: var(--dark-blue);
+  color: var(--text-white);
+}

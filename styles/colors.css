@@ -1,0 +1,20 @@
+:root {
+  --dark-blue: #26404d;
+  --light-blue: #289dd2;
+  --text-white: #f7f7f7;
+}
+
+/* Light theme */
+html[data-theme='light'] {
+  --dark-blue: hsl(210, 10%, 62%);
+  --light-blue: hsl(210, 15%, 35%);
+  --text-white: hsl(210, 50%, 72%);
+}
+
+@media screen and (prefers-color-scheme: light) {
+  html {
+    --dark-blue: hsl(210, 10%, 62%);
+    --light-blue: hsl(210, 15%, 35%);
+    --text-white: hsl(210, 50%, 72%);
+  }
+}
