@@ -18,7 +18,7 @@ div#home header h1 {
 }
 
 div#home header small {
-  font-size: var(--font-size-06);
+  font-size: var(--font-size-07);
   opacity: 0.8;
 }
 
@@ -31,7 +31,4 @@ div#home button {
   border: none;
   border-radius: var(--rounded-01);
   width: 100%;
-}
-
-div#home button {
 }
