@@ -8,6 +8,7 @@ function createList(event) {
   const name = event.target.name.value;
   const description = event.target.description.value;
   const response = setListInLocalStorage(name, description);
+
   if (response.success) {
     console.log('here');
     // clear form
