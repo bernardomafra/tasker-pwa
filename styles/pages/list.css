@@ -1,0 +1,63 @@
+body header {
+  display: flex;
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+body header img {
+  position: absolute;
+}
+
+body header section::after {
+  content: '';
+  background-color: lightgray;
+  height: 0.1rem;
+  position: absolute;
+  width: 100vw;
+  bottom: -2rem;
+}
+
+body header section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+body header section h1#list-page-title {
+  text-transform: uppercase;
+  margin: 0px;
+  font-size: var(--font-size-02);
+}
+
+body header section p {
+  margin-bottom: 0px;
+  margin-top: 1.5rem;
+  font-size: var(--font-size-06);
+}
+
+body section#task-filters {
+  display: flex;
+  align-items: center;
+}
+
+body section#task-filters button {
+  height: 3rem;
+  background: var(--dark-blue);
+  border: 2px solid var(--light-blue);
+}
+
+body section#task-filters button:not(:first-of-type) {
+  margin-left: 1rem;
+}
+
+body section#task-filters button#search-btn {
+  border-radius: var(--rounded-01);
+}
+
+ul#tasks-container li[data-completed='true'] {
+  text-decoration: line-through;
+  font-style: italic;
+  opacity: 0.6;
+}

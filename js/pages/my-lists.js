@@ -1,9 +1,7 @@
-const taskList = document.getElementById('task-list');
+const taskList = document.getElementById('lists-container');
 
 window.addEventListener('load', () => {
-  console.log('loaded');
   const lists = getListsFromLocalStorage();
-  console.log('lists: ', lists);
 
   if (!lists.length) return emptyStateMessage();
 
@@ -27,6 +25,10 @@ function emptyStateMessage() {
 
 function createListElement(list) {
   const li = document.createElement('li');
+  li.setAttribute(
+    'onclick',
+    `window.location.href = '/list.html?id=${list.id}'`,
+  );
   li.innerHTML = `
       <section class="list-data">
         <h2 class="limitted-text">${list.name}</h2>

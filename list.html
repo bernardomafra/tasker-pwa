@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TaskeR - Lista</title>
+    <link href="styles/global.css" rel="stylesheet" />
+    <link href="styles/toast.css" rel="stylesheet" />
+    <link href="styles/pages/list.css" rel="stylesheet" />
+    <link href="styles/list-common.css" rel="stylesheet" />
+    <meta
+      name="description"
+      content="Aplicação para controle de tarefas - Página de lista específica"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body style="visibility: hidden" class="container-page">
+    <header>
+      <img
+        src="assets/icons/arrow-left.png"
+        width="48px"
+        height="48px"
+        alt="Ícone de uma seta para esquerda que ao clicar volta à página anterior"
+        onclick="window.history.back()"
+      />
+      <section id="list-header-info">
+        <h1 class="title" id="list-page-title"></h1>
+        <p></p>
+      </section>
+    </header>
+
+    <section id="task-filters" style="display: none">
+      <button class="primary-btn">TO DO</button>
+      <button class="primary-btn">DONE</button>
+      <button id="search-btn">
+        <img
+          width="32px"
+          height="32px"
+          src="assets/icons/magnify.png"
+          alt="search task in list"
+        />
+      </button>
+    </section>
+
+    <ul id="tasks-container"></ul>
+
+    <footer class="bottom-tab">
+      <button class="tab">
+        <img
+          src="assets/icons/edit.png"
+          alt="ícone de lápis simbolizando edição da tarefa"
+        />
+      </button>
+      <button class="tab">
+        <img
+          src="assets/icons/plus.png"
+          alt="ícone de mais simbolizando nova tarefa"
+        />
+      </button>
+      <button class="tab">
+        <img
+          src="assets/icons/delete.png"
+          alt="ícone de lixeira simbolizando exclusão de tarefa"
+        />
+      </button>
+    </footer>
+    <script type="text/javascript" src="js/loaders.js"></script>
+    <script type="text/javascript" src="js/storage.js"></script>
+    <script type="text/javascript" src="js/bottom-tab.js"></script>
+    <script type="text/javascript" src="js/toast.js"></script>
+    <script type="text/javascript" src="js/pages/list.js"></script>
+  </body>
+</html>

@@ -1,3 +1,5 @@
+@import 'bottom-tab.css';
+
 body {
   overflow-y: scroll;
   scroll-behavior: smooth;
@@ -12,12 +14,15 @@ section.empty-state {
   font-size: var(--font-size-06);
 }
 
-ul#task-list {
+ul {
   list-style: none;
   padding: 0px;
 }
 
-ul#task-list li {
+ul li {
+  cursor: pointer;
+  transform: scale(0.99);
+
   display: flex;
   align-items: center;
   width: 100%;
@@ -28,29 +33,44 @@ ul#task-list li {
   border-radius: var(--rounded-01);
 }
 
-ul#task-list li:not(:first-of-type) {
+ul li:hover {
+  transition: 0.2s;
+  transform: scale(1);
+  opacity: 0.9;
+}
+
+ul li:active,
+ul li:focus,
+.selected {
+  transition: 0.2s;
+  transform: scale(1);
+  opacity: 0.9;
+  border: 2px solid var(--text-white);
+}
+
+ul li:not(:first-of-type) {
   margin-top: 1rem;
 }
 
-ul#task-list li section {
+ul li section {
   width: 85%;
   word-wrap: break-word;
 }
 
-ul#task-list li section h2 {
+ul li section h2 {
   text-transform: uppercase;
   margin: 0px;
   font-family: var(--font-title);
   font-size: var(--font-size-06);
 }
 
-ul#task-list li section p {
+ul li section p {
   margin: 0.2rem 0px;
   font-size: var(--font-size-07);
   word-wrap: break-word;
 }
 
-ul#task-list li aside {
+ul li aside {
   font-family: var(--font-title);
   font-size: var(--font-size-03);
   padding: 0px 1rem;

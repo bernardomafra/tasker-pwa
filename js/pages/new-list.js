@@ -10,7 +10,6 @@ function createList(event) {
   const response = setListInLocalStorage(name, description);
 
   if (response.success) {
-    console.log('here');
     // clear form
     event.target.reset();
     // show success message

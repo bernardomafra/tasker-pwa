@@ -17,7 +17,9 @@ function setListInLocalStorage(listName, listDescription, tasks = []) {
       message: `Já existe uma lista com o nome ${listName}`,
     };
 
+  const listId = lists.length + 1;
   lists.push({
+    id: listId,
     name: listName,
     description: listDescription,
     tasks,

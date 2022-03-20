@@ -1,0 +1,43 @@
+.bottom-tab {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  border-top-left-radius: var(--rounded-01);
+  border-top-right-radius: var(--rounded-01);
+  height: 2rem;
+  justify-self: flex-end;
+
+  cursor: pointer;
+
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+
+  transition: 0.2s;
+}
+
+.bottom-tab::before {
+  content: '';
+  position: absolute;
+  display: block;
+  background: lightgray;
+  height: 0.5rem;
+  width: 5rem;
+  top: 10px;
+  border-radius: var(--rounded-01);
+}
+
+.bottom-tab.open {
+  height: 8rem;
+}
+
+.bottom-tab.open button.tab {
+  align-self: center;
+  background: var(--light-blue);
+  border: none;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: var(--rounded-01);
+}
