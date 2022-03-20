@@ -33,10 +33,6 @@
     />
     <!-- end-font -->
 
-    <!-- begin-js -->
-    <script type="text/javascript" src="js/index.js"></script>
-    <!-- end-js -->
-
     <!-- begin-ios-splash-screen-config 
       Generated from https://appsco.pe/developer/splash-screens
     -->
@@ -48,7 +44,7 @@
     ></script>
     <!-- end-ios-splash-screen-config -->
   </head>
-  <body style="visibility: hidden" onload="loadCss()">
+  <body style="visibility: hidden">
     <button style="display: none" id="btn-install-pwa">Install app</button>
     <div id="home" class="container-center">
       <header>
@@ -58,5 +54,7 @@
       </header>
       <a class="primary-btn" href="/new-list.html">nova lista</a>
     </div>
+    <script type="text/javascript" src="js/loaders.js"></script>
+    <script type="text/javascript" src="js/pages/home.js"></script>
   </body>
 </html>

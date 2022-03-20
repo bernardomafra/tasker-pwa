@@ -47,7 +47,3 @@ body form .input-group input {
 body form .input-group input:focus {
   border: 2px solid var(--light-blue);
 }
-
-body form input[type='submit'] {
-  margin-top: 2rem;
-}

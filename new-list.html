@@ -3,9 +3,10 @@
   <head>
     <title>TaskeR - Nova Lista</title>
     <link href="styles/global.css" rel="stylesheet" />
+    <link href="styles/toast.css" rel="stylesheet" />
     <link href="styles/pages/new-list.css" rel="stylesheet" />
   </head>
-  <body>
+  <body style="visibility: hidden">
     <img
       src="assets/icons/arrow-left.png"
       width="48px"
@@ -14,13 +15,15 @@
       onclick="window.history.back()"
     />
     <h1 class="title">Nova <br />Lista</h1>
-    <form>
+    <form id="new-list-form">
       <section class="input-group">
         <input
           id="name"
           type="text"
           name="name"
           placeholder="Ex.: Lista de compras"
+          required
+          tabindex="1"
         />
         <label for="name"> Nome </label>
       </section>
@@ -30,10 +33,14 @@
           type="text"
           name="description"
           placeholder="Ex.: Lista para lembrar o que comprar no super-mercado"
+          tabindex="2"
         />
         <label for="description"> Descrição </label>
       </section>
-      <input class="primary-btn" type="submit" value="Criar Lista" />
+      <button class="primary-btn" type="submit">Criar Lista</button>
     </form>
+    <script type="text/javascript" src="js/loaders.js"></script>
+    <script type="text/javascript" src="js/toast.js"></script>
+    <script type="text/javascript" src="js/pages/new-list/index.js"></script>
   </body>
 </html>
