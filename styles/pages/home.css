@@ -19,3 +19,12 @@ div#home header small {
   font-size: var(--font-size-07);
   opacity: 0.8;
 }
+
+div#home footer {
+  display: flex;
+  flex-direction: column;
+}
+
+div#home a.primary-btn:not(:first-of-type) {
+  margin-top: 1rem;
+}

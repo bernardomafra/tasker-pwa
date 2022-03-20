@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TaskeR - Nova Lista</title>
+    <link href="styles/global.css" rel="stylesheet" />
+    <link href="styles/toast.css" rel="stylesheet" />
+    <link href="styles/pages/my-lists.css" rel="stylesheet" />
+    <meta
+      name="description"
+      content="Aplicação para controle de tarefas - Minhas listas"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body style="visibility: hidden" class="container-page">
+    <img
+      src="assets/icons/arrow-left.png"
+      width="48px"
+      height="48px"
+      alt="Ícone de uma seta para esquerda que ao clicar volta à página anterior"
+      onclick="window.history.back()"
+    />
+    <h1 class="title">Minhas <br />Listas</h1>
+    <ul id="task-list"></ul>
+
+    <script type="text/javascript" src="js/loaders.js"></script>
+    <script type="text/javascript" src="js/storage.js"></script>
+    <script type="text/javascript" src="js/toast.js"></script>
+    <script type="text/javascript" src="js/pages/my-lists.js"></script>
+  </body>
+</html>

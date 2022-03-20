@@ -6,6 +6,14 @@
   padding: 0px 25vw;
 }
 
+.container-page {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  justify-self: center;
+  padding: 10vh 0px;
+}
+
 :root {
   --rounded-01: 0.5rem;
   --rounded-02: 1rem;

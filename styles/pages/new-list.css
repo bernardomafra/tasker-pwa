@@ -1,11 +1,3 @@
-body {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  justify-self: center;
-  padding: 10vh 0px;
-}
-
 body img {
   cursor: pointer;
   border: 1px solid transparent;

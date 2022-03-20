@@ -1,0 +1,57 @@
+body {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+section.empty-state {
+  display: flex;
+  flex-direction: column;
+}
+
+section.empty-state {
+  font-size: var(--font-size-06);
+}
+
+ul#task-list {
+  list-style: none;
+  padding: 0px;
+}
+
+ul#task-list li {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--light-blue);
+  padding: 0.5rem;
+  height: 6rem;
+  overflow: hidden;
+  border-radius: var(--rounded-01);
+}
+
+ul#task-list li:not(:first-of-type) {
+  margin-top: 1rem;
+}
+
+ul#task-list li section {
+  width: 85%;
+  word-wrap: break-word;
+}
+
+ul#task-list li section h2 {
+  text-transform: uppercase;
+  margin: 0px;
+  font-family: var(--font-title);
+  font-size: var(--font-size-06);
+}
+
+ul#task-list li section p {
+  margin: 0.2rem 0px;
+  font-size: var(--font-size-07);
+  word-wrap: break-word;
+}
+
+ul#task-list li aside {
+  font-family: var(--font-title);
+  font-size: var(--font-size-03);
+  padding: 0px 1rem;
+}
