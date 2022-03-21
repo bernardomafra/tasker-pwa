@@ -1,5 +1,6 @@
 window.addEventListener('load', () => {
   const lists = getListsFromLocalStorage();
+  const footerBottomTab = document.querySelector('footer#tasker-bottom-tab');
 
   const mockTasks = [
     {
@@ -53,11 +54,11 @@ window.addEventListener('load', () => {
   }
 
   window.showTaskOptions = (taskId) => {
-    console.log(bottomTab.isOpen);
     if (bottomTab.isOpen && isTaskSelected(taskId)) {
       return bottomTab.close({
         callback: () => {
           unselectAllTasks();
+          switchCenterTab({ type: 'hide' });
         },
       });
     }
@@ -72,18 +73,21 @@ window.addEventListener('load', () => {
     li.setAttribute('data-taskid', task.id);
     li.setAttribute('data-completed', task.completed);
     li.innerHTML = `
-    <section class="list-data">
-    <h2 class="limitted-text">${task.name}</h2>
-    <p class="limitted-text">${task.description}</p>
-    </section>
-    <aside class="list-actions">
-    <img onclick="showTaskOptions(${task.id})" width="32px" height="32px" src="assets/icons/settings.png" alt="list settings icon" />
-    </aside>
+      <section class="list-data">
+        <h2 class="limitted-text">${task.name}</h2>
+        <p class="limitted-text">${task.description}</p>
+      </section>
+      <aside class="list-actions">
+        <img onclick="showTaskOptions(${task.id})" width="32px" height="32px" src="assets/icons/settings.png" alt="list settings icon" />
+      </aside>
     `;
     return li;
   }
 
   function highlightSelectedTask(taskId) {
+    switchCenterTab({
+      type: isTaskCompleted(taskId) ? 'uncheck-task' : 'check-task',
+    });
     const selectedTasks = document.querySelectorAll('.selected');
 
     selectedTasks.forEach(
@@ -105,4 +109,123 @@ window.addEventListener('load', () => {
     const taskElement = document.querySelector(`li[data-taskid="${taskId}"]`);
     return taskElement.classList.contains('selected');
   }
+
+  function getSelectedTask() {
+    const selectedTask = document.querySelector('.selected');
+    const taskId = selectedTask.getAttribute('data-taskid');
+    const taskObject = list.tasks.find((task) => +task.id === +taskId);
+    return {
+      element: selectedTask,
+      task: taskObject,
+    };
+  }
+
+  function isTaskCompleted(taskId) {
+    return list.tasks.find((task) => +task.id === +taskId).completed;
+  }
+
+  function createUnCheckElement() {
+    const element = document.createElement('button');
+    element.setAttribute('name', 'uncheck');
+    element.setAttribute('class', 'tab');
+    element.addEventListener('click', onTabClick);
+
+    element.innerHTML = `
+        <img
+          src="assets/icons/uncheck.png"
+          alt="ícone de mais simbolizando nova tarefa"
+        />
+      `;
+
+    return element;
+  }
+
+  function createCheckElement() {
+    const element = document.createElement('button');
+    element.setAttribute('name', 'check');
+    element.setAttribute('class', 'tab');
+    element.addEventListener('click', onTabClick);
+
+    element.innerHTML = `
+        <img
+          src="assets/icons/check.png"
+          alt="ícone de mais simbolizando nova tarefa"
+        />
+      `;
+
+    return element;
+  }
+
+  function createNewTaskElement() {
+    const element = document.createElement('button');
+    element.setAttribute('name', 'plus');
+    element.setAttribute('class', 'tab');
+    element.addEventListener('click', onTabClick);
+
+    element.innerHTML = `
+        <img
+          src="assets/icons/plus.png"
+          alt="ícone de mais simbolizando nova tarefa"
+        />
+      `;
+
+    return element;
+  }
+
+  function switchCenterTab({ type }) {
+    const middleTab = footerBottomTab.children[1];
+
+    if (type === 'hide') {
+      unselectAllTasks();
+      middleTab.style.display = 'none';
+      return;
+    }
+
+    if (type === 'check-task') {
+      middleTab.replaceWith(createCheckElement());
+    } else if (type === 'uncheck-task') {
+      middleTab.replaceWith(createUnCheckElement());
+    } else if (type === 'list-config') {
+      middleTab.replaceWith(createNewTaskElement());
+    }
+  }
+
+  function listConfig(event) {
+    if (event.target.id === 'tasker-bottom-tab') {
+      if (bottomTab.isOpen) {
+        bottomTab.close({
+          callback: () => switchCenterTab({ type: 'hide' }),
+        });
+      } else
+        bottomTab.open({
+          callback: () => switchCenterTab({ type: 'list-config' }),
+        });
+    }
+  }
+
+  function checkTask() {
+    const { element, task } = getSelectedTask();
+    element.setAttribute('data-completed', true);
+    task.completed = true;
+  }
+
+  function uncheckTask() {
+    const { element, task } = getSelectedTask();
+    element.setAttribute('data-completed', false);
+    task.completed = false;
+  }
+
+  window.onTabClick = (event) => {
+    const actionName = event.target.name;
+
+    const actions = {
+      check: checkTask,
+      uncheck: uncheckTask,
+      plus: () => (window.location.href = '/new-task.html'),
+    };
+
+    if (actions[actionName]) actions[actionName]();
+  };
+
+  footerBottomTab.addEventListener('click', listConfig);
 });

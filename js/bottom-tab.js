@@ -58,7 +58,7 @@
       showTabs();
       bottomTab.isOpen = true;
 
-      if (options.callback) options.callback();
+      if (options?.callback) options.callback();
     };
 
     bottomTab.close = function (options) {
@@ -67,7 +67,7 @@
       container.classList.remove('open');
       hideTabs();
 
-      if (options.callback) options.callback();
+      if (options?.callback) options.callback();
     };
   }
 
