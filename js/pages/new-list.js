@@ -1,8 +1,8 @@
-const newListForm = document.getElementById('new-list-form');
+const newListForm = document.querySelector('form');
 
-newListForm.addEventListener('submit', createList);
+newListForm.addEventListener('submit', create);
 
-function createList(event) {
+function create(event) {
   event.preventDefault();
   // get form input values
   const name = event.target.name.value;

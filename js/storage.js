@@ -30,3 +30,34 @@ function setListInLocalStorage(listName, listDescription, tasks = []) {
     message: `List ${listName} cadastrada com sucesso!`,
   };
 }
+
+function setTaskInLocalStorage(task, listId) {
+  if (!task.name)
+    return {
+      success: false,
+      message: 'O nome da tarefa é obrigatório',
+    };
+
+  const allLists = getListsFromLocalStorage();
+  const list = allLists.find((list) => +list.id === +listId);
+  if (list.find)
+    return {
+      success: false,
+      message: `Já existe uma tarefa na lista com o nome ${task.name}`,
+    };
+
+  const taskId = list.tasks.length + 1;
+  const newTask = {
+    id: taskId,
+    name: task.name,
+    description: task.description,
+  };
+  list.tasks.push(newTask);
+
+  allLists[listId - 1] = list;
+  localStorage.setItem('lists', JSON.stringify(allLists));
+  return {
+    success: true,
+    message: `Tarefa ${task.name} cadastrada com sucesso na lista ${list.name}!`,
+  };
+}

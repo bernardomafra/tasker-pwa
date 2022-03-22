@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TaskeR - Nova Lista</title>
+    <title>TaskeR - Nova Tarefa</title>
     <link href="styles/global.css" rel="stylesheet" />
     <link href="styles/toast.css" rel="stylesheet" />
     <link href="styles/pages/new-form.css" rel="stylesheet" />
     <meta
       name="description"
-      content="Aplicação para controle de tarefas - Criação de uma nova lista"
+      content="Aplicação para controle de tarefas - Criação de uma nova tarefa"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
@@ -19,14 +19,14 @@
       alt="Ícone de uma seta para esquerda que ao clicar volta à página anterior"
       onclick="window.history.back()"
     />
-    <h1 class="title">Nova <br />Lista</h1>
+    <h1 class="title">Nova <br />Tarefa</h1>
     <form>
       <section class="input-group">
         <input
           id="name"
           type="text"
           name="name"
-          placeholder="Ex.: Lista de compras"
+          placeholder="Ex.: Comprar pão"
           required
           tabindex="1"
         />
@@ -37,16 +37,15 @@
           id="description"
           type="text"
           name="description"
-          placeholder="Ex.: Lista para lembrar o que comprar no super-mercado"
-          tabindex="2"
+          placeholder="Ex.: Comprar 10 pães de sal"
         />
         <label for="description"> Descrição </label>
       </section>
-      <button class="primary-btn" type="submit">Criar Lista</button>
+      <button class="primary-btn" type="submit">Criar Tarefa</button>
     </form>
     <script type="text/javascript" src="js/loaders.js"></script>
     <script type="text/javascript" src="js/storage.js"></script>
     <script type="text/javascript" src="js/toast.js"></script>
-    <script type="text/javascript" src="js/pages/new-list.js"></script>
+    <script type="text/javascript" src="js/pages/new-task.js"></script>
   </body>
 </html>

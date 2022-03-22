@@ -22,12 +22,15 @@ body header section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   width: 100%;
 }
 
 body header section h1#list-page-title {
+  word-break: break-word;
+  max-width: 80vw;
   text-transform: uppercase;
-  margin: 0px;
+  margin: 0px 0px 0px 1.5rem;
   font-size: var(--font-size-02);
 }
 

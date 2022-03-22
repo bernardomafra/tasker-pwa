@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
   let [title, description] = listHeaderInfo.children;
   title.innerHTML = list.name;
   description.innerHTML = list.description;
-  list.tasks = mockTasks;
+  // list.tasks = mockTasks;
 
   if (!list.tasks.length) return emptyStateMessage();
 
@@ -41,7 +41,7 @@ window.addEventListener('load', () => {
     emptyState.innerHTML = `
     <h2>Você não tem nenhuma tarefa ainda.</h2>
     <p>Clique no botão abaixo para criar uma nova tarefa.</p>
-    <a class="primary-btn" href="/new-task.html">Nova tarefa</a>
+    <a class="primary-btn" href="/new-task.html?listId=${listId}">Nova tarefa</a>
   `;
     tasks.remove();
     document.body.appendChild(emptyState);
@@ -221,7 +221,7 @@ window.addEventListener('load', () => {
     const actions = {
       check: checkTask,
       uncheck: uncheckTask,
-      plus: () => (window.location.href = '/new-task.html'),
+      plus: () => (window.location.href = `/new-task.html?listId=${listId}`),
     };
 
     if (actions[actionName]) actions[actionName]();
