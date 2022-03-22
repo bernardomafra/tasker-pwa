@@ -2,9 +2,7 @@ const cacheName = 'tasker-pwa-v1.0';
 
 const htmlFiles = [
   '/index.html',
-  '/list.html',
   '/new-list.html',
-  '/my-lists.html',
 ];
 
 const cssFiles = [
@@ -26,9 +24,6 @@ const jsFiles = [
   '/js/loaders.js',
   '/js/bottom-tab.js',
   '/js/pages/home.js',
-  '/js/pages/new-list.js',
-  '/js/pages/my-lists.js',
-  '/js/pages/list.js',
 ];
 
 const assetsFiles = [
@@ -69,25 +64,11 @@ const pathsToCache = [
 
 // Armazena todos os arquivos no cache atual
 self.addEventListener('install', function (event) {
-  caches.open(cacheName).then((cache) => {
-    cache.addAll(pathsToCache);
-  });
-});
-
-// Recupera todos os nomes de cache e apaga aqueles
-// que forem diferentes do cache atual
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys().then((keyList) => {
-      return Promise.all(
-        keyList.map((key) => {
-          if (key !== cacheName) {
-            return caches.delete(key);
-          }
-        }),
-      );
-    }),
-  );
+  event.waitUntil(
+    caches.open(cacheName).then((cache) => {
+      cache.addAll(pathsToCache);
+    });
+  )
 });
 
 // Recupera todos os nomes de cache e apaga aqueles

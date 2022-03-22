@@ -20,21 +20,6 @@ window.addEventListener('load', () => {
     if (actions[actionName]) actions[actionName]();
   };
 
-  const mockTasks = [
-    {
-      id: 1,
-      name: 'Task 1',
-      description: 'Description 1',
-      completed: true,
-    },
-    {
-      id: 2,
-      name: 'Task 2',
-      description: 'Description 2',
-      completed: false,
-    },
-  ];
-
   const listId = getUrlParam('id');
   const list = lists.find((list) => list.id === +listId);
   const listHeaderInfo = document.getElementById('list-header-info');
@@ -43,7 +28,6 @@ window.addEventListener('load', () => {
   let [title, description] = listHeaderInfo.children;
   title.innerHTML = list.name;
   description.innerHTML = list.description;
-  // list.tasks = mockTasks;
 
   if (!list.tasks.length) return emptyStateMessage();
 
