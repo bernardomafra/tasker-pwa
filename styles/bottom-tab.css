@@ -3,17 +3,15 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  position: relative;
   border-top-left-radius: var(--rounded-01);
   border-top-right-radius: var(--rounded-01);
   height: 2rem;
-  justify-self: flex-end;
 
   cursor: pointer;
 
-  position: absolute;
+  position: fixed;
   bottom: 0px;
-  width: 100%;
+  width: calc(91vw);
 
   transition: 0.2s;
 }

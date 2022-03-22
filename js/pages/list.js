@@ -1,6 +1,24 @@
 window.addEventListener('load', () => {
   const lists = getListsFromLocalStorage();
   const footerBottomTab = document.querySelector('footer#tasker-bottom-tab');
+  footerBottomTab.addEventListener('click', listConfig);
+
+  window.onTabClick = (event) => {
+    const actionName = event.target.name;
+    console.log(actionName);
+    const actions = {
+      check: checkTask,
+      uncheck: uncheckTask,
+      plus: () => (window.location.href = `/new-task.html?listId=${listId}`),
+      delete: () => {
+        const { element, task } = getSelectedTask();
+        if (task) deleteTask(element, task);
+        else deleteList();
+      },
+    };
+
+    if (actions[actionName]) actions[actionName]();
+  };
 
   const mockTasks = [
     {
@@ -250,24 +268,18 @@ window.addEventListener('load', () => {
     });
   }
 
-  function deleteList() {}
+  function deleteList() {
+    const { success, message } = deleteListInLocalStorage(list.id);
 
-  window.onTabClick = (event) => {
-    const actionName = event.target.name;
-    console.log(actionName);
-    const actions = {
-      check: checkTask,
-      uncheck: uncheckTask,
-      plus: () => (window.location.href = `/new-task.html?listId=${listId}`),
-      delete: () => {
-        const { element, task } = getSelectedTask();
-        if (task) deleteTask(element, task);
-        else deleteList();
-      },
-    };
-
-    if (actions[actionName]) actions[actionName]();
-  };
-
-  footerBottomTab.addEventListener('click', listConfig);
+    if (success) {
+      window.location.href = '/index.html';
+    } else {
+      toast.create({
+        type: 'error',
+        title: 'Erro!',
+        text: message,
+        timeout: 3000,
+      });
+    }
+  }
 });

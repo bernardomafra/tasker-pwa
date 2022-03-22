@@ -67,16 +67,10 @@ const pathsToCache = [
   ...assetsFiles,
 ];
 
-self.addEventListener('load', () => {
-  caches.open(cacheName).then((cache) => {
-    cache.delete(pathsToCache);
-  });
-});
-
 // Armazena todos os arquivos no cache atual
 self.addEventListener('install', function (event) {
   caches.open(cacheName).then((cache) => {
-    cache.delete(pathsToCache);
+    cache.addAll(pathsToCache);
   });
 });
 

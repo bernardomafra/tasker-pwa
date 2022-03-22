@@ -54,7 +54,7 @@ function setTaskInLocalStorage(task, listId) {
   };
   list.tasks.push(newTask);
 
-  allLists[listId - 1] = list;
+  allLists.splice(listId - 1, 1);
   localStorage.setItem('lists', JSON.stringify(allLists));
   return {
     success: true,
@@ -78,5 +78,38 @@ function deleteTaskInLocalStorage(listId, taskId) {
   return {
     success: true,
     message: `Tarefa ${taskId} excluída com sucesso!`,
+  };
+}
+
+function deleteListInLocalStorage(listId) {
+  if (!listId)
+    return {
+      success: false,
+      message: 'Lista não encontrada',
+    };
+
+  let allLists = getListsFromLocalStorage();
+
+  if (!allLists.find((list) => +list.id === +listId)) {
+    return {
+      success: false,
+      message: 'Lista não encontrada',
+    };
+  }
+
+  if (allLists.length === 1) {
+    localStorage.removeItem('lists');
+    return {
+      success: true,
+      message: 'Lista excluída com sucesso!',
+    };
+  }
+
+  allLists = allLists.filter((list) => +list.id !== +listId);
+  localStorage.setItem('lists', JSON.stringify(allLists));
+
+  return {
+    success: true,
+    message: `Lista excluída com sucesso!`,
   };
 }
