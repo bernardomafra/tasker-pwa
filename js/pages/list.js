@@ -112,6 +112,12 @@ window.addEventListener('load', () => {
 
   function getSelectedTask() {
     const selectedTask = document.querySelector('.selected');
+    if (!selectedTask)
+      return {
+        element: null,
+        task: null,
+      };
+
     const taskId = selectedTask.getAttribute('data-taskid');
     const taskObject = list.tasks.find((task) => +task.id === +taskId);
     return {
@@ -215,13 +221,49 @@ window.addEventListener('load', () => {
     task.completed = false;
   }
 
+  function deleteTask(element, task) {
+    const { success, message } = deleteTaskInLocalStorage(list.id, task.id);
+
+    if (success) {
+      element.remove();
+
+      toast.create({
+        type: 'success',
+        title: 'Sucesso!',
+        text: message,
+        timeout: 3000,
+      });
+    } else {
+      toast.create({
+        type: 'error',
+        title: 'Erro!',
+        text: message,
+        timeout: 3000,
+      });
+    }
+
+    bottomTab.close({
+      callback: () => {
+        unselectAllTasks();
+        switchCenterTab({ type: 'hide' });
+      },
+    });
+  }
+
+  function deleteList() {}
+
   window.onTabClick = (event) => {
     const actionName = event.target.name;
-
+    console.log(actionName);
     const actions = {
       check: checkTask,
       uncheck: uncheckTask,
       plus: () => (window.location.href = `/new-task.html?listId=${listId}`),
+      delete: () => {
+        const { element, task } = getSelectedTask();
+        if (task) deleteTask(element, task);
+        else deleteList();
+      },
     };
 
     if (actions[actionName]) actions[actionName]();

@@ -61,3 +61,22 @@ function setTaskInLocalStorage(task, listId) {
     message: `Tarefa ${task.name} cadastrada com sucesso na lista ${list.name}!`,
   };
 }
+
+function deleteTaskInLocalStorage(listId, taskId) {
+  if (!taskId || !listId)
+    return {
+      success: false,
+      message: 'Tarefa não encontrada',
+    };
+
+  const allLists = getListsFromLocalStorage();
+  const list = allLists.find((list) => +list.id === +listId);
+  list.tasks = list.tasks.filter((task) => +task.id !== +taskId);
+  allLists[listId - 1] = list;
+  localStorage.setItem('lists', JSON.stringify(allLists));
+
+  return {
+    success: true,
+    message: `Tarefa ${taskId} excluída com sucesso!`,
+  };
+}
