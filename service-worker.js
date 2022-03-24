@@ -1,4 +1,4 @@
-const cacheName = 'tasker-pwa-v5.1';
+const cacheName = 'tasker-pwa-v5.3';
 
 const htmlFiles = ['/index.html', '/new-list.html'];
 
@@ -46,7 +46,7 @@ const assetsFiles = [
   'assets/splashscreens/iphonex_splash.png',
   'assets/splashscreens/iphonexr_splash.png',
   'assets/splashscreens/iphonexsmax_splash.png',
- 'assets/appicons/android-icon-36x36.png',
+  'assets/appicons/android-icon-36x36.png',
   'assets/appicons/android-icon-48x48.png',
   'assets/appicons/android-icon-72x72.png',
   'assets/appicons/android-icon-96x96.png',
