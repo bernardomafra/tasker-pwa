@@ -21,11 +21,13 @@ window.addEventListener('load', () => {
   };
 
   const listId = getUrlParam('id');
-  const list = lists.find((list) => list.id === +listId);
+  console.log(lists);
+  const list = lists.find((list) => +list.id === +listId);
   const listHeaderInfo = document.getElementById('list-header-info');
   const tasks = document.getElementById('tasks-container');
 
   let [title, description] = listHeaderInfo.children;
+  console.log(list);
   title.innerHTML = list.name;
   description.innerHTML = list.description;
 

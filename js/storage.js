@@ -54,7 +54,7 @@ function setTaskInLocalStorage(task, listId) {
   };
   list.tasks.push(newTask);
 
-  allLists.splice(listId - 1, 1);
+  allLists[listId - 1] = list;
   localStorage.setItem('lists', JSON.stringify(allLists));
   return {
     success: true,
