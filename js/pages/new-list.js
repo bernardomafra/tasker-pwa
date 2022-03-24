@@ -10,9 +10,8 @@ function create(event) {
   const response = setListInLocalStorage(name, description);
 
   if (response.success) {
-    // clear form
     event.target.reset();
-    // show success message
+
     toast.create({
       type: 'success',
       title: 'Sucesso!',
