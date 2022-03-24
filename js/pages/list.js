@@ -18,7 +18,7 @@ window.addEventListener('load', () => {
       edit: () => {
         const { element, task } = getSelectedTask();
         if (task) window.location.href = `/new-task.html?id=${task.id}&listId=${listId}`
-        else window.location.href=`/new-list?id=${listId}`
+        else window.location.href=`/new-list.html?id=${listId}`
       },
     };
 
@@ -34,7 +34,7 @@ window.addEventListener('load', () => {
   title.innerHTML = list.name;
   description.innerHTML = list.description;
 
-  if (!list.tasks.length) return emptyStateMessage();
+  if (!list.tasks?.length) return emptyStateMessage();
 
   document.getElementById('task-filters').style.display = 'flex';
   list.tasks.forEach((task) => {
