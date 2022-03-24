@@ -19,6 +19,7 @@ function create(event) {
       timeout: 3000,
     });
 
+    console.log('here')
     window.location.href = `/list.html?id=${response.data.id}`;
   } else {
     return toast.create({

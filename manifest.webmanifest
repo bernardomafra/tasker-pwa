@@ -1,7 +1,7 @@
 {
   "name": "TaskeR",
   "short_name": "TaskeR",
-  "start_url": "https://tasker-pwa.bernardomafra.repl.co/",
+  "start_url": "https://tasker-pwa.bernardomafra.repl.co",
   "display": "standalone",
   "theme_color": "#289dd2",
   "background_color": "#26404d",

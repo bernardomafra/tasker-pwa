@@ -48,6 +48,15 @@
     <script type="text/javascript" src="js/storage.js"></script>
     <script type="text/javascript" src="js/toast.js"></script>
     <script type="text/javascript" src="js/pages/new-list.js"></script>
-    <script type="text/javascript" src="js/register-sw.js"></script>
+    <script type="text/javascript" >
+      window.addEventListener('load', () => {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .register('service-worker.js')
+            .then((res) => console.log('service worker registered on', res.scope))
+            .catch((err) => console.log('service worker not registered', err));
+        }
+      });
+    </script>
   </body>
 </html>
