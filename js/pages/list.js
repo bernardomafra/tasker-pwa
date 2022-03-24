@@ -220,12 +220,16 @@ window.addEventListener('load', () => {
     const { element, task } = getSelectedTask();
     element.setAttribute('data-completed', true);
     task.completed = true;
+    updateTaskInLocalStorage(task, listId)
+    switchCenterTab({ type: 'uncheck-task'})
   }
 
   function uncheckTask() {
     const { element, task } = getSelectedTask();
     element.setAttribute('data-completed', false);
     task.completed = false;
+    updateTaskInLocalStorage(task, listId)
+    switchCenterTab({ type: 'check-task'})
   }
 
   function deleteTask(element, task) {
