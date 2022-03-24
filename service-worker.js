@@ -60,9 +60,7 @@ const pathsToCache = [
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open(cacheName).then((cache) => cache.addAll(pathsToCache)),
-  );
+  caches.open(cacheName).then((cache) => cache.addAll(pathsToCache));
 });
 
 self.addEventListener('fetch', (e) => {
