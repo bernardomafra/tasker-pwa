@@ -38,7 +38,6 @@ function setTaskInLocalStorage(task, listId) {
     return {
       success: false,
       message: 'O nome da tarefa é obrigatório',
-      data: null,
     };
 
   const allLists = getListsFromLocalStorage();

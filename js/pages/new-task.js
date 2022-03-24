@@ -24,6 +24,7 @@ window.addEventListener('load', () => {
         timeout: 3000,
       });
 
+      console.log('here')
       window.location.href = `/list.html?id=${listId}`;
     } else
       return toast.create({
