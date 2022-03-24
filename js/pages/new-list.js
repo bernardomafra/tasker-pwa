@@ -13,18 +13,20 @@ function create(event) {
     // clear form
     event.target.reset();
     // show success message
-    return toast.create({
+    toast.create({
       type: 'success',
       title: 'Sucesso!',
       text: response.message,
       timeout: 3000,
     });
-  }
 
-  return toast.create({
-    type: 'error',
-    title: 'Erro!',
-    text: response.message || 'Não foi possível criar a lista',
-    timeout: 3000,
-  });
+    window.location.href = `/list.html?id=${response.data.id}`;
+  } else {
+    return toast.create({
+      type: 'error',
+      title: 'Erro!',
+      text: response.message || 'Não foi possível criar a lista',
+      timeout: 3000,
+    });
+  }
 }

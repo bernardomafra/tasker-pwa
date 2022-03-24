@@ -18,16 +18,18 @@ function setListInLocalStorage(listName, listDescription, tasks = []) {
     };
 
   const listId = lists.length + 1;
-  lists.push({
+  const newList = {
     id: listId,
     name: listName,
     description: listDescription,
     tasks,
-  });
+  };
+  lists.push(newList);
   localStorage.setItem('lists', JSON.stringify(lists));
   return {
     success: true,
     message: `List ${listName} cadastrada com sucesso!`,
+    data: newList,
   };
 }
 
@@ -36,6 +38,7 @@ function setTaskInLocalStorage(task, listId) {
     return {
       success: false,
       message: 'O nome da tarefa é obrigatório',
+      data: null,
     };
 
   const allLists = getListsFromLocalStorage();
@@ -44,6 +47,7 @@ function setTaskInLocalStorage(task, listId) {
     return {
       success: false,
       message: `Já existe uma tarefa na lista com o nome ${task.name}`,
+      data: null,
     };
 
   const taskId = list.tasks.length + 1;
@@ -59,6 +63,7 @@ function setTaskInLocalStorage(task, listId) {
   return {
     success: true,
     message: `Tarefa ${task.name} cadastrada com sucesso na lista ${list.name}!`,
+    data: newTask,
   };
 }
 
@@ -67,6 +72,7 @@ function deleteTaskInLocalStorage(listId, taskId) {
     return {
       success: false,
       message: 'Tarefa não encontrada',
+      data: null,
     };
 
   const allLists = getListsFromLocalStorage();
@@ -78,6 +84,7 @@ function deleteTaskInLocalStorage(listId, taskId) {
   return {
     success: true,
     message: `Tarefa ${taskId} excluída com sucesso!`,
+    data: taskId,
   };
 }
 
@@ -86,6 +93,7 @@ function deleteListInLocalStorage(listId) {
     return {
       success: false,
       message: 'Lista não encontrada',
+      data: null,
     };
 
   let allLists = getListsFromLocalStorage();
@@ -94,6 +102,7 @@ function deleteListInLocalStorage(listId) {
     return {
       success: false,
       message: 'Lista não encontrada',
+      data: null,
     };
   }
 
@@ -102,6 +111,7 @@ function deleteListInLocalStorage(listId) {
     return {
       success: true,
       message: 'Lista excluída com sucesso!',
+      data: listId,
     };
   }
 
@@ -111,5 +121,6 @@ function deleteListInLocalStorage(listId) {
   return {
     success: true,
     message: `Lista excluída com sucesso!`,
+    data: listId,
   };
 }

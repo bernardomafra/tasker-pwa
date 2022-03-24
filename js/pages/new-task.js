@@ -17,20 +17,21 @@ window.addEventListener('load', () => {
       // clear form
       event.target.reset();
       // show success message
-      return toast.create({
+      toast.create({
         type: 'success',
         title: 'Sucesso!',
         text: response.message,
         timeout: 3000,
       });
-    }
 
-    return toast.create({
-      type: 'error',
-      title: 'Erro!',
-      text: response.message || 'Não foi possível criar a tarefa',
-      timeout: 3000,
-    });
+      window.location.href = `/list.html?id=${listId}`;
+    } else
+      return toast.create({
+        type: 'error',
+        title: 'Erro!',
+        text: response.message || 'Não foi possível criar a tarefa',
+        timeout: 3000,
+      });
   }
 
   function getUrlParam(param) {
