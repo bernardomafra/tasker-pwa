@@ -1,4 +1,4 @@
-const cacheName = 'tasker-pwa-v3.1';
+const cacheName = 'tasker-pwa-v3.4';
 
 const htmlFiles = ['/index.html', '/new-list.html'];
 
@@ -18,7 +18,7 @@ const cssFiles = [
 const jsFiles = [
   '/js/toast.js',
   '/js/storage.js',
-  'loaders.js',
+  '/loaders.js',
   '/js/bottom-tab.js',
   '/js/pages/home.js',
 ];
@@ -65,7 +65,7 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('fetch', (e) => {
   e.respondWith(
-    caches.open(currentVersion).then((cache) => {
+    caches.open(cacheName).then((cache) => {
       return cache.match(e.request).then((resp) => {
         // Request found in current cache, or fetch the file
         return (
