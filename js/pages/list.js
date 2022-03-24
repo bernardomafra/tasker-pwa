@@ -41,7 +41,7 @@ window.addEventListener('load', () => {
     const emptyState = document.createElement('section');
     emptyState.classList.add('empty-state');
     emptyState.innerHTML = `
-    <h2>Você não tem nenhuma tarefa aindA.</h2>
+    <h2>Você não tem nenhuma tarefa ainda...</h2>
     <p>Clique no botão abaixo para criar uma nova tarefa.</p>
     <a class="primary-btn" href="/new-task.html?listId=${listId}">Nova tarefa</a>
   `;
