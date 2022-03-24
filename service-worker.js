@@ -1,4 +1,4 @@
-const cacheName = 'tasker-pwa-v2.6';
+const cacheName = 'tasker-pwa-v2.7';
 
 const htmlFiles = ['/index.html', '/new-list.html'];
 
@@ -69,29 +69,31 @@ self.addEventListener('install', function (event) {
 // Recupera todos os nomes de cache e apaga aqueles
 // que forem diferentes do cache atual
 self.addEventListener('activate', (e) => {
-  caches.keys().then((keyList) => {
-    return Promise.all(
-      keyList.map((key) => {
-        if (key !== cacheName) {
-          return caches.delete(key);
-        }
-      }),
-    );
-  });
+  e.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key !== cacheName) {
+            return caches.delete(key);
+          }
+        }),
+      );
+    }),
+  );
 });
 
 // Tenta servir o arquivo do cache atual. Se não for possível,
 // baixa o recurso da web e o armazena localmente, antes de entregar
 // uma cópia para o usuário.
 self.addEventListener('fetch', function (event) {
-  let response = caches.open(cacheName).then((cache) => {
-    return cache.match(event.request).then((resource) => {
-      if (resource) return resource;
-      return fetch(event.request).then((resource) => {
-        cache.put(event.request, resource.clone());
-        return resource;
+  let resposta = caches.open(cacheName).then((cache) => {
+    return cache.match(event.request).then((recurso) => {
+      if (recurso) return recurso;
+      return fetch(event.request).then((recurso) => {
+        cache.put(event.request, recurso.clone());
+        return recurso;
       });
     });
   });
-  event.respondWith(response);
+  event.respondWith(resposta);
 });
