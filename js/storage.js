@@ -3,6 +3,12 @@ function getListsFromLocalStorage() {
   return lists ? JSON.parse(lists) : [];
 }
 
+function getTaskFromLocalStorage(listId, taskId) {
+  const lists = JSON.parse(localStorage.getItem('lists'));
+  const list = lists.find(list => +list.id === +listId)
+  return list.tasks.find(task => +task.id === +taskId)
+}
+
 function setListInLocalStorage(listName, listDescription, tasks = []) {
   if (!listName)
     return {
@@ -33,7 +39,9 @@ function setListInLocalStorage(listName, listDescription, tasks = []) {
   };
 }
 
-function setTaskInLocalStorage(task, listId) {
+function setTaskInLocalStorage(task, listId, taskExists) {
+  if (taskExists) return updateTaskInLocalStorage(task, listId) 
+  
   if (!task.name)
     return {
       success: false,
@@ -42,7 +50,7 @@ function setTaskInLocalStorage(task, listId) {
 
   const allLists = getListsFromLocalStorage();
   const list = allLists.find((list) => +list.id === +listId);
-  if (list.find)
+  if (list.tasks.find((listTask) => listTask.name === task.name)) 
     return {
       success: false,
       message: `Já existe uma tarefa na lista com o nome ${task.name}`,
@@ -56,8 +64,8 @@ function setTaskInLocalStorage(task, listId) {
     description: task.description,
   };
   list.tasks.push(newTask);
-
-  allLists[listId - 1] = list;
+  const listIndex = allLists.findIndex(listToFind => +listToFind.id === +list.id)
+  allLists[listIndex] = list;
   localStorage.setItem('lists', JSON.stringify(allLists));
   return {
     success: true,
@@ -77,7 +85,8 @@ function deleteTaskInLocalStorage(listId, taskId) {
   const allLists = getListsFromLocalStorage();
   const list = allLists.find((list) => +list.id === +listId);
   list.tasks = list.tasks.filter((task) => +task.id !== +taskId);
-  allLists[listId - 1] = list;
+  const listIndex = allLists.findIndex(listToFind => +listToFind.id === +list.id)
+  allLists[listIndex] = list;
   localStorage.setItem('lists', JSON.stringify(allLists));
 
   return {
@@ -121,5 +130,35 @@ function deleteListInLocalStorage(listId) {
     success: true,
     message: `Lista excluída com sucesso!`,
     data: listId,
+  };
+}
+
+function updateTaskInLocalStorage(task, listId) {
+  console.log('update: ', task)
+  if (!task || !listId) return {
+    success: false,
+    message: 'Erro ao atualizar tarefa',
+    data: null,
+  };
+
+  const allLists = getListsFromLocalStorage();
+  const list = allLists.find((list) => +list.id === +listId);
+  if (!list)
+    return {
+      success: false,
+      message: `Não existe uma lista com a tarefa ${task.name}`,
+      data: null,
+    };
+
+  const taskIndex = list.tasks.findIndex(listTask => +listTask.id === +task.id)
+  list.tasks[taskIndex] = task
+
+  const listIndex = allLists.findIndex(listToFind => +listToFind.id === +list.id)
+  allLists[listIndex] = list;
+  localStorage.setItem('lists', JSON.stringify(allLists));
+  return {
+    success: true,
+    message: `Tarefa ${task.name} editada com sucesso na lista ${list.name}!`,
+    data: task,
   };
 }

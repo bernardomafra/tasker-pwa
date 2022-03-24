@@ -1,17 +1,26 @@
 window.addEventListener('load', () => {
   const listId = getUrlParam('listId');
+  const taskId = getUrlParam('id');
+  const isEditting = !!taskId
 
+  
   const newListForm = document.querySelector('form');
 
   newListForm.addEventListener('submit', create);
 
+  if (isEditting) handleEdit(taskId, listId);
+
   function create(event) {
     event.preventDefault();
     // get form input values
+    
     const name = event.target.name.value;
     const description = event.target.description.value;
     const task = { name, description };
-    const response = setTaskInLocalStorage(task, listId);
+
+    if (isEditting) task.id = taskId
+    
+    const response = setTaskInLocalStorage(task, listId, isEditting);
 
     if (response.success) {
       // clear form
@@ -40,4 +49,14 @@ window.addEventListener('load', () => {
     const value = urlParams.get(param);
     return value;
   }
+
+  function handleEdit(taskId, listId) {
+    const task = getTaskFromLocalStorage(listId, taskId)
+    
+    document.querySelector('h1.title').innerHTML = 'Editar<br/>Tarefa'
+    document.querySelector('form button').innerHTML = 'Salvar'
+    document.getElementById('name').value = task.name
+    document.getElementById('description').value = task.description
+  }
 });
+

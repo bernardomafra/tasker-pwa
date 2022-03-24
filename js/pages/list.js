@@ -1,11 +1,11 @@
 window.addEventListener('load', () => {
+  const listId = getUrlParam('id');
   const lists = getListsFromLocalStorage();
   const footerBottomTab = document.querySelector('footer#tasker-bottom-tab');
   footerBottomTab.addEventListener('click', listConfig);
 
   window.onTabClick = (event) => {
     const actionName = event.target.name;
-    console.log(actionName);
     const actions = {
       check: checkTask,
       uncheck: uncheckTask,
@@ -15,13 +15,16 @@ window.addEventListener('load', () => {
         if (task) deleteTask(element, task);
         else deleteList();
       },
+      edit: () => {
+        const { element, task } = getSelectedTask();
+        if (task) window.location.href = `/new-task.html?id=${task.id}&listId=${listId}`
+        else window.location.href=`/new-list?id=${listId}`
+      },
     };
 
     if (actions[actionName]) actions[actionName]();
   };
 
-  const listId = getUrlParam('id');
-  console.log(lists);
   const list = lists.find((list) => +list.id === +listId);
   const listHeaderInfo = document.getElementById('list-header-info');
   const tasks = document.getElementById('tasks-container');
