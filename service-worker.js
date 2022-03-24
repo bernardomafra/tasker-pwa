@@ -1,4 +1,4 @@
-const cacheName = 'tasker-pwa-v5.3';
+const cacheName = 'tasker-pwa-v6.0';
 
 const htmlFiles = ['/index.html', '/new-list.html'];
 
@@ -12,7 +12,7 @@ const cssFiles = [
   '/styles/bottom-tab.css',
   '/styles/pages/home.css',
   '/styles/pages/list.css',
-  '/styles/pages/new-list.css',
+  '/styles/pages/new-list.css'
 ];
 
 const jsFiles = [
@@ -46,37 +46,12 @@ const assetsFiles = [
   'assets/splashscreens/iphonex_splash.png',
   'assets/splashscreens/iphonexr_splash.png',
   'assets/splashscreens/iphonexsmax_splash.png',
-  'assets/appicons/android-icon-36x36.png',
-  'assets/appicons/android-icon-48x48.png',
-  'assets/appicons/android-icon-72x72.png',
-  'assets/appicons/android-icon-96x96.png',
-  'assets/appicons/android-icon-144x144.png',
-  'assets/appicons/android-icon-192x192.png',
-  'assets/appicons/apple-icon-57x57.png',
-  'assets/appicons/apple-icon-60x60.png',
-  'assets/appicons/apple-icon-72x72.png',
-  'assets/appicons/apple-icon-76x76.png',
-  'assets/appicons/apple-icon-114x114.png',
-  'assets/appicons/apple-icon-120x120.png',
-  'assets/appicons/apple-icon-144x144.png',
-  'assets/appicons/apple-icon-152x152.png',
-  'assets/appicons/apple-icon-180x180.png',
-  'assets/appicons/apple-icon-precomposed.png',
-  'assets/appicons/apple-icon.png',
-  'assets/appicons/favicon-16x16.png',
-  'assets/appicons/favicon-32x32.png',
-  'assets/appicons/favicon-96x96.png',
-  'assets/appicons/favicon.ico',
-  'assets/appicons/logo-192px.png',
-  'assets/appicons/logo-512px.png',
-  'assets/appicons/logo-no-subtitle.png',
-  'assets/appicons/logo-only.png',
-  'assets/appicons/logo-with-bg.png',
-  'assets/appicons/logo.png',
-  'assets/appicons/ms-icon-70x70.png',
-  'assets/appicons/ms-icon-144x144.png',
-  'assets/appicons/ms-icon-150x150.png',
-  'assets/appicons/ms-icon-310x310.png'
+  'assets/logo-192px.png',
+  'assets/logo-512px.png',
+  'assets/logo-no-subtitle.png',
+  'assets/logo-only.png',
+  'assets/logo-with-bg.png',
+  'assets/logo.png',
 ];
 
 const pathsToCache = [
