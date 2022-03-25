@@ -59,6 +59,10 @@ body section#task-filters button#search-btn {
   border-radius: var(--rounded-01);
 }
 
+body section#task-filters button#active_task-filter {
+  background: var(--light-blue);
+}
+
 ul#tasks-container li[data-completed='true'] {
   text-decoration: line-through;
   font-style: italic;

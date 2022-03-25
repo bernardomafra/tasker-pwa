@@ -25,9 +25,28 @@ window.addEventListener('load', () => {
     if (actions[actionName]) actions[actionName]();
   };
 
+  window.filter = (event) => {
+    const buttonClicked = event.target
+    const type = buttonClicked.getAttribute('data-filter_type');
+    if (buttonClicked.previousElementSibling) {
+      buttonClicked.previousElementSibling.removeAttribute('id')
+    } else {
+      buttonClicked.nextElementSibling.removeAttribute('id')
+    }
+    
+    buttonClicked.setAttribute('id', 'active_task-filter')
+
+    const filters = {
+      todo: showOnlyTodoTasks,
+      done: showOnlyDoneTasks
+    }
+
+    if (filters[type]) filters[type]();
+  }
+
   const list = lists.find((list) => +list.id === +listId);
   const listHeaderInfo = document.getElementById('list-header-info');
-  const tasks = document.getElementById('tasks-container');
+  const tasksContainer = document.getElementById('tasks-container');
 
   let [title, description] = listHeaderInfo.children;
   console.log(list);
@@ -39,7 +58,7 @@ window.addEventListener('load', () => {
   document.getElementById('task-filters').style.display = 'flex';
   list.tasks.forEach((task) => {
     const taskElement = createTaskElement(task);
-    tasks.appendChild(taskElement);
+    tasksContainer.appendChild(taskElement);
   });
 
   function emptyStateMessage() {
@@ -50,7 +69,7 @@ window.addEventListener('load', () => {
     <p>Clique no botão abaixo para criar uma nova tarefa.</p>
     <a class="primary-btn" href="/new-task.html?listId=${listId}">Nova tarefa</a>
   `;
-    tasks.remove();
+    tasksContainer.remove();
     document.body.appendChild(emptyState);
   }
 
@@ -275,4 +294,19 @@ window.addEventListener('load', () => {
       });
     }
   }
+  
+  function showOnlyTodoTasks() {
+    for (const task of tasksContainer.children) {
+      if (task.getAttribute('data-completed') === 'true') task.style.display = 'none'
+      else task.style.display = 'flex'
+    }
+  }
+
+  function showOnlyDoneTasks() {
+     for (const task of tasksContainer.children) {
+      if (task.getAttribute('data-completed') === 'false') task.style.display = 'none'
+       else task.style.display = 'flex'
+    }
+  }
+  
 });

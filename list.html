@@ -28,8 +28,8 @@
     </header>
 
     <section id="task-filters" style="display: none">
-      <button class="primary-btn">TO DO</button>
-      <button class="primary-btn">DONE</button>
+      <button data-filter_type="todo" class="primary-btn" onclick="filter(event)">TO DO</button>
+      <button data-filter_type="done" class="primary-btn" onclick="filter(event)">DONE</button>
       <button id="search-btn">
         <img
           width="32px"
