@@ -30,7 +30,6 @@ body header section h1#list-page-title {
   word-break: break-word;
   max-width: 80vw;
   text-transform: uppercase;
-  margin: 0px 0px 0px 1.5rem;
   font-size: var(--font-size-02);
 }
 
@@ -61,6 +60,7 @@ body section#task-filters button#search-btn {
 
 body section#task-filters button#active_task-filter {
   background: var(--light-blue);
+  transition: all .2s;
 }
 
 ul#tasks-container li[data-completed='true'] {

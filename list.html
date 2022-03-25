@@ -28,9 +28,10 @@
     </header>
 
     <section id="task-filters" style="display: none">
+      <input style="display: none; width: 100%" type="text" placeholder="Buscar uma tarefa por palavras chave" name="taskSearch" onkeyup="onSearchInputChange(event)" />
       <button data-filter_type="todo" class="primary-btn" onclick="filter(event)">TO DO</button>
-      <button data-filter_type="done" class="primary-btn" onclick="filter(event)">DONE</button>
-      <button id="search-btn">
+      <button data-filter_type="todo" class="primary-btn" onclick="filter(event)">TO DO</button>
+      <button id="search-btn" onclick="search(event)">
         <img
           width="32px"
           height="32px"

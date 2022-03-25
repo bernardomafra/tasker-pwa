@@ -47,6 +47,36 @@ window.addEventListener('load', () => {
     if (filters[type]) filters[type]();
   }
 
+  window.search = (event) => {
+    const searchInput = document.querySelector('#task-filters input')
+    const filters = document.querySelectorAll('#task-filters button.primary-btn')
+    
+    if (searchInput.style.display === 'none') {
+      filters.forEach(button => button.style.display = 'none')
+      searchInput.style.display = 'flex'
+      event.target.setAttribute('src', 'assets/icons/filter.png')
+    } else {
+      filters.forEach(button => button.style.display = 'flex')
+      searchInput.style.display = 'none'
+      event.target.setAttribute('src', 'assets/icons/magnify.png')
+    }
+  }
+  
+  window.onSearchInputChange = (event) => {
+    const searchWords = event.target.value
+    const tasksUnMatch = list.tasks.map((storageTask) => ({
+      ...storageTask,
+      matches: taskMachesKeywords(storageTask, searchWords)
+    }))
+    
+    if (tasksUnMatch.length) {
+      tasksUnMatch.forEach((taskObject) => {
+        const taskElement = document.querySelector(`li[data-taskid="${+taskObject.id}"`)
+        taskObject.matches ? showTaskElement(taskElement) : hideTaskElement(taskElement)
+      })
+    } 
+  }
+
   const list = lists.find((list) => +list.id === +listId);
   const listHeaderInfo = document.getElementById('list-header-info');
   const tasksContainer = document.getElementById('tasks-container');
@@ -314,5 +344,21 @@ window.addEventListener('load', () => {
 
   function showAllTasks() {
     window.location.reload()
+  }
+
+  function hideTaskElement(element) {
+    element.style.width = '0px'
+    element.style.height = '0px'
+    element.style.padding = '0px'
+  }
+
+  function showTaskElement(element) {
+    element.style.width = '100%'
+    element.style.height = '6rem'
+    element.style.padding = '0.5rem'
+  }
+
+  function taskMachesKeywords(taskToCompare, keyWords) {
+    return taskToCompare.name.match(new RegExp(keyWords, 'i')) || taskToCompare.description?.match(new RegExp(keyWords, 'i'))
   }
 });

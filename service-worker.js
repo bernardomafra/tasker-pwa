@@ -1,4 +1,4 @@
-const cacheName = 'tasker-pwa-v12.1';
+const cacheName = 'tasker-pwa-v14.0';
 
 const htmlFiles = ['/index.html', '/new-list.html'];
 
@@ -36,6 +36,7 @@ const assetsFiles = [
   'assets/icons/plus.png',
   'assets/icons/settings.png',
   'assets/icons/uncheck.png',
+  'assets/icons/filter.png',
   'assets/splashscreens/ipad_splash.png',
   'assets/splashscreens/ipadpro1_splash.png',
   'assets/splashscreens/ipadpro2_splash.png',

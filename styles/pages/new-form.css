@@ -29,13 +29,5 @@ input:focus + label {
 }
 
 body form .input-group input {
-  height: 3rem;
   margin-top: 0.8rem;
-  font-family: var(--title-font);
-  border-radius: var(--rounded-01);
-  padding: 0px 0.6rem;
-}
-
-body form .input-group input:focus {
-  border: 2px solid var(--light-blue);
 }
