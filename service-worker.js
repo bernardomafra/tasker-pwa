@@ -1,4 +1,4 @@
-const cacheName = 'tasker-pwa-v9.9';
+const cacheName = 'tasker-pwa-v12.1';
 
 const htmlFiles = ['/index.html', '/new-list.html'];
 

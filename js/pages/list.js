@@ -33,8 +33,11 @@ window.addEventListener('load', () => {
     } else {
       buttonClicked.nextElementSibling.removeAttribute('id')
     }
-    
-    buttonClicked.setAttribute('id', 'active_task-filter')
+
+    if(buttonClicked.getAttribute('id') === 'active_task-filter'){
+      buttonClicked.removeAttribute('id')
+      showAllTasks();
+    } else buttonClicked.setAttribute('id', 'active_task-filter')
 
     const filters = {
       todo: showOnlyTodoTasks,
@@ -294,19 +297,22 @@ window.addEventListener('load', () => {
       });
     }
   }
-  
+
   function showOnlyTodoTasks() {
     for (const task of tasksContainer.children) {
-      if (task.getAttribute('data-completed') === 'true') task.style.display = 'none'
-      else task.style.display = 'flex'
+      if (task.getAttribute('data-completed') === 'true') task.setAttribute('data-task_hidden', true)
+      else task.removeAttribute('data-task_hidden')
     }
   }
 
   function showOnlyDoneTasks() {
      for (const task of tasksContainer.children) {
-      if (task.getAttribute('data-completed') === 'false') task.style.display = 'none'
-       else task.style.display = 'flex'
+      if (task.getAttribute('data-completed') === 'false') task.setAttribute('data-task_hidden', true)
+       else task.removeAttribute('data-task_hidden')
     }
   }
-  
+
+  function showAllTasks() {
+    window.location.reload()
+  }
 });

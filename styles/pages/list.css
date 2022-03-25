@@ -68,3 +68,7 @@ ul#tasks-container li[data-completed='true'] {
   font-style: italic;
   opacity: 0.6;
 }
+
+ul#tasks-container li[data-task_hidden='true'] {
+  display: none;
+}
