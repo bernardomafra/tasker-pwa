@@ -37,7 +37,7 @@ button:hover {
 .title {
   font-family: var(--font-title);
   font-size: var(--font-size-01);
-  margin-bottom: 1rem;
+  margin-bottom: 1.01rem;
 }
 
 .primary-btn {

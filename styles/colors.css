@@ -9,7 +9,7 @@
   --light-red: #ed5045;
 }
 
-/* Light Theme */
+/* Light Theme Style */
 html[data-theme='light'] {
   --darker-blue: #2a3d45;
   --dark-blue: #ffffff;

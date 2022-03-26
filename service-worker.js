@@ -1,4 +1,4 @@
-const cacheName = 'tasker-pwa-v17.1';
+const cacheName = 'tasker-pwa-v17.6';
 
 const htmlFiles = [
   '/index.html',
@@ -31,6 +31,7 @@ const jsFiles = [
   '/js/pages/list.js',
   '/js/pages/my-lists.js',
   '/js/storage.js',
+  '/js/theme.js'
 ];
 
 const assetsFiles = [
@@ -43,6 +44,8 @@ const assetsFiles = [
   'assets/icons/settings.png',
   'assets/icons/uncheck.png',
   'assets/icons/filter.png',
+  'assets/icons/dark-switcher.png',
+  'assets/icons/light-switcher.png',
   'assets/splashscreens/ipad_splash.png',
   'assets/splashscreens/ipadpro1_splash.png',
   'assets/splashscreens/ipadpro2_splash.png',
@@ -57,6 +60,7 @@ const assetsFiles = [
   'assets/logo-512px.png',
   'assets/logo-no-subtitle.png',
   'assets/logo-only.png',
+  'assets/logo-only-light.png',
   'assets/logo-with-bg.png',
   'assets/logo.png',
 ];
@@ -74,31 +78,31 @@ self.addEventListener('install', (e) => {
   caches.open(cacheName).then((cache) => cache.addAll(pathsToCache));
 });
 
-// self.addEventListener('fetch', (e) => {
-//   e.respondWith(
-//     caches.open(cacheName).then((cache) => {
-//       return cache.match(e.request).then((resp) => {
-//         // Request found in current cache, or fetch the file
-//         return (
-//           resp ||
-//           fetch(e.request)
-//             .then((response) => {
-//               // Cache the newly fetched file for next time
-//               cache.put(e.request, response.clone());
-//               return response;
-//               // Fetch failed, user is offline
-//             })
-//             .catch(() => {
-//               // Look in the whole cache to load a fallback version of the file
-//               return caches.match(e.request).then((fallback) => {
-//                 return fallback;
-//               });
-//             })
-//         );
-//       });
-//     }),
-//   );
-// });
+self.addEventListener('fetch', (e) => {
+  e.respondWith(
+    caches.open(cacheName).then((cache) => {
+      return cache.match(e.request).then((resp) => {
+        // Request found in current cache, or fetch the file
+        return (
+          resp ||
+          fetch(e.request)
+            .then((response) => {
+              // Cache the newly fetched file for next time
+              cache.put(e.request, response.clone());
+              return response;
+              // Fetch failed, user is offline
+            })
+            .catch(() => {
+              // Look in the whole cache to load a fallback version of the file
+              return caches.match(e.request).then((fallback) => {
+                return fallback;
+              });
+            })
+        );
+      });
+    }),
+  );
+});
 
 self.addEventListener('activate', (e) => {
   e.waitUntil(
