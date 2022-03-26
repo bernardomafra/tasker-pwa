@@ -28,9 +28,27 @@
     </header>
 
     <section id="task-filters" style="display: none">
-      <input style="display: none; width: 100%" type="text" placeholder="Buscar uma tarefa por palavras chave" name="taskSearch" onkeyup="onSearchInputChange(event)" />
-      <button data-filter_type="todo" class="primary-btn" onclick="filter(event)">TO DO</button>
-      <button data-filter_type="done" class="primary-btn" onclick="filter(event)">DONE</button>
+      <input
+        style="display: none; width: 100%"
+        type="text"
+        placeholder="Buscar uma tarefa por palavras chave"
+        name="taskSearch"
+        onkeyup="onSearchInputChange(event)"
+      />
+      <button
+        data-filter_type="todo"
+        class="primary-btn"
+        onclick="filter(event)"
+      >
+        TO DO
+      </button>
+      <button
+        data-filter_type="done"
+        class="primary-btn"
+        onclick="filter(event)"
+      >
+        DONE
+      </button>
       <button id="search-btn" onclick="search(event)">
         <img
           width="32px"
@@ -43,37 +61,20 @@
 
     <ul id="tasks-container"></ul>
 
-    <footer class="bottom-tab">
-      <button name="edit" class="tab" onclick="onTabClick(event)">
-        <img
-          src="assets/icons/edit.png"
-          alt="ícone de lápis simbolizando edição da tarefa"
-        />
-      </button>
-      <button name="plus" class="tab" onclick="onTabClick(event)">
-        <img
-          src="assets/icons/plus.png"
-          alt="ícone de mais simbolizando nova tarefa"
-        />
-      </button>
-      <button name="delete" class="tab" onclick="onTabClick(event)">
-        <img
-          src="assets/icons/delete.png"
-          alt="ícone de lixeira simbolizando exclusão de tarefa"
-        />
-      </button>
-    </footer>
+    <footer class="bottom-tab"></footer>
     <script type="text/javascript" src="js/loaders.js"></script>
     <script type="text/javascript" src="js/storage.js"></script>
     <script type="text/javascript" src="js/bottom-tab.js"></script>
     <script type="text/javascript" src="js/toast.js"></script>
     <script type="text/javascript" src="js/pages/list.js"></script>
-    <script type="text/javascript" >
+    <script type="text/javascript">
       window.addEventListener('load', () => {
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker
             .register('service-worker.js')
-            .then((res) => console.log('service worker registered on', res.scope))
+            .then((res) =>
+              console.log('service worker registered on', res.scope),
+            )
             .catch((err) => console.log('service worker not registered', err));
         }
       });

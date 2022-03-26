@@ -1,4 +1,4 @@
-const cacheName = 'tasker-pwa-v14.3';
+const cacheName = 'tasker-pwa-v14.4';
 
 const htmlFiles = ['/index.html', '/new-list.html'];
 
@@ -12,7 +12,7 @@ const cssFiles = [
   '/styles/bottom-tab.css',
   '/styles/pages/home.css',
   '/styles/pages/list.css',
-  '/styles/pages/new-list.css'
+  '/styles/pages/new-list.css',
 ];
 
 const jsFiles = [
@@ -24,7 +24,7 @@ const jsFiles = [
   '/js/pages/new-task.js',
   '/js/pages/list.js',
   '/js/pages/my-lists.js',
-  '/js/storage.js'
+  '/js/storage.js',
 ];
 
 const assetsFiles = [

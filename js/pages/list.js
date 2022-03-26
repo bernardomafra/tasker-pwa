@@ -3,6 +3,7 @@ window.addEventListener('load', () => {
   const lists = getListsFromLocalStorage();
   const footerBottomTab = document.querySelector('footer#tasker-bottom-tab');
   footerBottomTab.addEventListener('click', listConfig);
+  createBottomTabButtonsElement();
 
   window.onTabClick = (event) => {
     const actionName = event.target.name;
@@ -13,12 +14,13 @@ window.addEventListener('load', () => {
       delete: () => {
         const { element, task } = getSelectedTask();
         if (task) deleteTask(element, task);
-        else deleteList();
+        else createBottomTabWarningElement();
       },
       edit: () => {
-        const { element, task } = getSelectedTask();
-        if (task) window.location.href = `/new-task.html?id=${task.id}&listId=${listId}`
-        else window.location.href=`/new-list.html?id=${listId}`
+        const { task } = getSelectedTask();
+        if (task)
+          window.location.href = `/new-task.html?id=${task.id}&listId=${listId}`;
+        else window.location.href = `/new-list.html?id=${listId}`;
       },
     };
 
@@ -26,62 +28,85 @@ window.addEventListener('load', () => {
   };
 
   window.filter = (event) => {
-    const buttonClicked = event.target
+    const buttonClicked = event.target;
     const type = buttonClicked.getAttribute('data-filter_type');
 
-    const otherType = type === 'done' ? 'todo' : 'done'
-    const otherButton = document.querySelector(`button[data-filter_type="${otherType}"]`)
-    otherButton.removeAttribute('id')
+    const otherType = type === 'done' ? 'todo' : 'done';
+    const otherButton = document.querySelector(
+      `button[data-filter_type="${otherType}"]`,
+    );
+    otherButton.removeAttribute('id');
 
-    if(buttonClicked.getAttribute('id') === 'active_task-filter'){
-      buttonClicked.removeAttribute('id')
+    if (buttonClicked.getAttribute('id') === 'active_task-filter') {
+      buttonClicked.removeAttribute('id');
       showAllTasks();
-    } else buttonClicked.setAttribute('id', 'active_task-filter')
+    } else buttonClicked.setAttribute('id', 'active_task-filter');
 
     const filters = {
       todo: showOnlyTodoTasks,
-      done: showOnlyDoneTasks
-    }
+      done: showOnlyDoneTasks,
+    };
 
     if (filters[type]) filters[type]();
-  }
+  };
 
   window.search = (event) => {
-    const searchInput = document.querySelector('#task-filters input')
-    const filters = document.querySelectorAll('#task-filters button.primary-btn')
-    
+    const searchInput = document.querySelector('#task-filters input');
+    const filters = document.querySelectorAll(
+      '#task-filters button.primary-btn',
+    );
+
     if (searchInput.style.display === 'none') {
-      filters.forEach(button => button.style.display = 'none')
-      searchInput.style.display = 'flex'
-      event.target.setAttribute('src', 'assets/icons/filter.png')
+      filters.forEach((button) => (button.style.display = 'none'));
+      searchInput.style.display = 'flex';
+      event.target.setAttribute('src', 'assets/icons/filter.png');
     } else {
-      filters.forEach(button => button.style.display = 'flex')
-      searchInput.style.display = 'none'
-      event.target.setAttribute('src', 'assets/icons/magnify.png')
+      filters.forEach((button) => (button.style.display = 'flex'));
+      searchInput.style.display = 'none';
+      event.target.setAttribute('src', 'assets/icons/magnify.png');
     }
-  }
-  
+  };
+
   window.onSearchInputChange = (event) => {
-    const searchWords = event.target.value
+    const searchWords = event.target.value;
     const tasksUnMatch = list.tasks.map((storageTask) => ({
       ...storageTask,
-      matches: taskMachesKeywords(storageTask, searchWords)
-    }))
-    
+      matches: taskMachesKeywords(storageTask, searchWords),
+    }));
+
     if (tasksUnMatch.length) {
       tasksUnMatch.forEach((taskObject) => {
-        const taskElement = document.querySelector(`li[data-taskid="${+taskObject.id}"`)
-        taskObject.matches ? showTaskElement(taskElement) : hideTaskElement(taskElement)
-      })
-    } 
-  }
+        const taskElement = document.querySelector(
+          `li[data-taskid="${+taskObject.id}"`,
+        );
+        taskObject.matches
+          ? showTaskElement(taskElement)
+          : hideTaskElement(taskElement);
+      });
+    }
+  };
+
+  window.deleteList = deleteList;
+
+  window.closeBottomTab = () => {
+    bottomTab.close({
+      callback: () => {
+        switchCenterTab({ type: 'hide' });
+      },
+    });
+  };
+
+  window.closeWarning = () => {
+    const warningContainer = document.getElementById('warning');
+    warningContainer.remove();
+    closeBottomTab();
+  };
 
   const list = lists.find((list) => +list.id === +listId);
   const listHeaderInfo = document.getElementById('list-header-info');
   const tasksContainer = document.getElementById('tasks-container');
 
   let [title, description] = listHeaderInfo.children;
-  console.log(list);
   title.innerHTML = list.name;
   description.innerHTML = list.description;
 
@@ -236,21 +261,78 @@ window.addEventListener('load', () => {
     return element;
   }
 
+  function createBottomTabWarningElement() {
+    const element = document.createElement('div');
+    element.setAttribute('id', 'warning');
+    element.innerHTML = `
+        <header>
+          <h4>Atenção!</h4>
+        </header>
+        <main>
+          <p>
+            Tem certeza que deseja excluir a lista
+            <span class="limitted-text"
+              >${list.name}</span
+            >
+            e todas suas tarefas ?
+          </p>
+        </main>
+        <footer>
+          <button class="primary-btn" onclick="closeWarning()">
+            cancelar
+          </button>
+          <button class="primary-btn" onclick="deleteList()">excluir</button>
+        </footer>
+      `;
+
+    footerBottomTab.replaceChildren(element);
+  }
+
+  function createBottomTabButtonsElement() {
+    const element = document.createElement('div');
+    element.setAttribute('id', 'buttons');
+    element.innerHTML = `
+        <button style="display: none" name="edit" class="tab" onclick="onTabClick(event)">
+          <img
+            src="assets/icons/edit.png"
+            alt="ícone de lápis simbolizando edição da tarefa"
+          />
+        </button>
+        <button style="display: none" name="plus" class="tab" onclick="onTabClick(event)">
+          <img
+            src="assets/icons/plus.png"
+            alt="ícone de mais simbolizando nova tarefa"
+          />
+        </button>
+        <button style="display: none" name="delete" class="tab" onclick="onTabClick(event)">
+          <img
+            src="assets/icons/delete.png"
+            alt="ícone de lixeira simbolizando exclusão de tarefa"
+          />
+        </button>
+      `;
+    footerBottomTab.replaceChildren(element);
+  }
+
   function switchCenterTab({ type }) {
-    const middleTab = footerBottomTab.children[1];
+    const tabs = footerBottomTab.children[0]?.children;
+
+    if (!tabs) return;
 
     if (type === 'hide') {
       unselectAllTasks();
-      middleTab.style.display = 'none';
+      tabs[1].style.display = 'none';
       return;
     }
 
     if (type === 'check-task') {
-      middleTab.replaceWith(createCheckElement());
+      tabs[1].replaceWith(createCheckElement());
     } else if (type === 'uncheck-task') {
-      middleTab.replaceWith(createUnCheckElement());
+      tabs[1].replaceWith(createUnCheckElement());
     } else if (type === 'list-config') {
-      middleTab.replaceWith(createNewTaskElement());
+      tabs[0].style.display = 'flex';
+      tabs[1].replaceWith(createNewTaskElement());
+      tabs[2].style.display = 'flex';
     }
   }
 
@@ -260,10 +342,12 @@ window.addEventListener('load', () => {
         bottomTab.close({
           callback: () => switchCenterTab({ type: 'hide' }),
         });
-      } else
+      } else {
+        if (!footerBottomTab.hasChildNodes()) createBottomTabButtonsElement();
         bottomTab.open({
           callback: () => switchCenterTab({ type: 'list-config' }),
         });
+      }
     }
   }
 
@@ -271,16 +355,16 @@ window.addEventListener('load', () => {
     const { element, task } = getSelectedTask();
     element.setAttribute('data-completed', true);
     task.completed = true;
-    updateTaskInLocalStorage(task, listId)
-    switchCenterTab({ type: 'uncheck-task'})
+    updateTaskInLocalStorage(task, listId);
+    switchCenterTab({ type: 'uncheck-task' });
   }
 
   function uncheckTask() {
     const { element, task } = getSelectedTask();
     element.setAttribute('data-completed', false);
     task.completed = false;
-    updateTaskInLocalStorage(task, listId)
-    switchCenterTab({ type: 'check-task'})
+    updateTaskInLocalStorage(task, listId);
+    switchCenterTab({ type: 'check-task' });
   }
 
   function deleteTask(element, task) {
@@ -329,35 +413,40 @@ window.addEventListener('load', () => {
 
   function showOnlyTodoTasks() {
     for (const task of tasksContainer.children) {
-      if (task.getAttribute('data-completed') === 'true') task.setAttribute('data-task_hidden', true)
-      else task.removeAttribute('data-task_hidden')
+      if (task.getAttribute('data-completed') === 'true')
+        task.setAttribute('data-task_hidden', true);
+      else task.removeAttribute('data-task_hidden');
     }
   }
 
   function showOnlyDoneTasks() {
-     for (const task of tasksContainer.children) {
-      if (task.getAttribute('data-completed') !== 'true') task.setAttribute('data-task_hidden', true)
-       else task.removeAttribute('data-task_hidden')
+    for (const task of tasksContainer.children) {
+      if (task.getAttribute('data-completed') !== 'true')
+        task.setAttribute('data-task_hidden', true);
+      else task.removeAttribute('data-task_hidden');
     }
   }
 
   function showAllTasks() {
-    window.location.reload()
+    window.location.reload();
   }
 
   function hideTaskElement(element) {
-    element.style.width = '0px'
-    element.style.height = '0px'
-    element.style.padding = '0px'
+    element.style.width = '0px';
+    element.style.height = '0px';
+    element.style.padding = '0px';
   }
 
   function showTaskElement(element) {
-    element.style.width = '100%'
-    element.style.height = '6rem'
-    element.style.padding = '0.5rem'
+    element.style.width = '100%';
+    element.style.height = '6rem';
+    element.style.padding = '0.5rem';
   }
 
   function taskMachesKeywords(taskToCompare, keyWords) {
-    return taskToCompare.name.match(new RegExp(keyWords, 'i')) || taskToCompare.description?.match(new RegExp(keyWords, 'i'))
+    return (
+      taskToCompare.name.match(new RegExp(keyWords, 'i')) ||
+      taskToCompare.description?.match(new RegExp(keyWords, 'i'))
+    );
   }
 });
