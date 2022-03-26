@@ -1,6 +1,6 @@
-const cacheName = 'tasker-pwa-v14.6';
+const cacheName = 'tasker-pwa-v15.2';
 
-const htmlFiles = ['/index.html', '/new-list.html'];
+const htmlFiles = ['/index.html', '/new-list.html', '/new-task.html', '/list.html', '/my-lists.html'];
 
 const cssFiles = [
   '/styles/global.css',
@@ -12,7 +12,7 @@ const cssFiles = [
   '/styles/bottom-tab.css',
   '/styles/pages/home.css',
   '/styles/pages/list.css',
-  '/styles/pages/new-list.css',
+  '/styles/pages/new-form.css',
 ];
 
 const jsFiles = [
@@ -68,31 +68,31 @@ self.addEventListener('install', (e) => {
   caches.open(cacheName).then((cache) => cache.addAll(pathsToCache));
 });
 
-self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    caches.open(cacheName).then((cache) => {
-      return cache.match(e.request).then((resp) => {
-        // Request found in current cache, or fetch the file
-        return (
-          resp ||
-          fetch(e.request)
-            .then((response) => {
-              // Cache the newly fetched file for next time
-              cache.put(e.request, response.clone());
-              return response;
-              // Fetch failed, user is offline
-            })
-            .catch(() => {
-              // Look in the whole cache to load a fallback version of the file
-              return caches.match(e.request).then((fallback) => {
-                return fallback;
-              });
-            })
-        );
-      });
-    }),
-  );
-});
+// self.addEventListener('fetch', (e) => {
+//   e.respondWith(
+//     caches.open(cacheName).then((cache) => {
+//       return cache.match(e.request).then((resp) => {
+//         // Request found in current cache, or fetch the file
+//         return (
+//           resp ||
+//           fetch(e.request)
+//             .then((response) => {
+//               // Cache the newly fetched file for next time
+//               cache.put(e.request, response.clone());
+//               return response;
+//               // Fetch failed, user is offline
+//             })
+//             .catch(() => {
+//               // Look in the whole cache to load a fallback version of the file
+//               return caches.match(e.request).then((fallback) => {
+//                 return fallback;
+//               });
+//             })
+//         );
+//       });
+//     }),
+//   );
+// });
 
 self.addEventListener('activate', (e) => {
   e.waitUntil(

@@ -73,7 +73,7 @@ window.addEventListener('load', () => {
       ...storageTask,
       matches: taskMachesKeywords(storageTask, searchWords),
     }));
-
+x
     if (tasksUnMatch.length) {
       tasksUnMatch.forEach((taskObject) => {
         const taskElement = document.querySelector(
@@ -90,9 +90,7 @@ window.addEventListener('load', () => {
 
   window.closeBottomTab = () => {
     bottomTab.close({
-      callback: () => {
-        switchCenterTab({ type: 'hide' });
-      },
+      callback: () => { switchCenterTab({ type: 'hide' }) },
     });
   };
 
@@ -321,7 +319,7 @@ window.addEventListener('load', () => {
 
     if (type === 'hide') {
       unselectAllTasks();
-      tabs[1].style.display = 'none';
+      footerBottomTab.children[0]?.remove()
       return;
     }
 

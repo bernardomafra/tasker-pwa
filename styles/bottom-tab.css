@@ -1,4 +1,6 @@
 .bottom-tab {
+  user-select: none;
+  
   background: white;
   display: flex;
   align-items: center;

@@ -25,7 +25,7 @@ body form .input-group:not(:first-of-type) {
 }
 
 body form .input-group:last-of-type + button {
-  margin-top: 2rem;
+  margin-top: 2.1rem;
 }
 
 input:focus + label {
