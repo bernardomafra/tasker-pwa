@@ -28,11 +28,10 @@ window.addEventListener('load', () => {
   window.filter = (event) => {
     const buttonClicked = event.target
     const type = buttonClicked.getAttribute('data-filter_type');
-    if (buttonClicked.previousElementSibling) {
-      buttonClicked.previousElementSibling.removeAttribute('id')
-    } else {
-      buttonClicked.nextElementSibling.removeAttribute('id')
-    }
+
+    const otherType = type === 'done' ? 'todo' : 'done'
+    const otherButton = document.querySelector(`button[data-filter_type="${otherType}"]`)
+    otherButton.removeAttribute('id')
 
     if(buttonClicked.getAttribute('id') === 'active_task-filter'){
       buttonClicked.removeAttribute('id')
@@ -337,7 +336,7 @@ window.addEventListener('load', () => {
 
   function showOnlyDoneTasks() {
      for (const task of tasksContainer.children) {
-      if (task.getAttribute('data-completed') === 'false') task.setAttribute('data-task_hidden', true)
+      if (task.getAttribute('data-completed') !== 'true') task.setAttribute('data-task_hidden', true)
        else task.removeAttribute('data-task_hidden')
     }
   }
