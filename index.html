@@ -7,7 +7,7 @@
       name="description"
       content="Aplicação para controle de tarefas - Página inicial"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"" />
     <meta
       name="theme-color"
       media="(prefers-color-scheme: light)"
@@ -68,7 +68,18 @@
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker
             .register('service-worker.js')
-            .then((res) => console.log('service worker registered on', res.scope))
+            .then((res) => {
+              Notification.requestPermission().then((permission) => {
+                if (permission === 'granted') {
+                  res.showNotification('TaskeR', {
+                    body: 'TaskeR está ativo!',
+                    icon: 'assets/logo-192px.png',
+                  });
+                }
+              });
+
+              console.log('service worker registered on', res.scope);
+            })
             .catch((err) => console.log('service worker not registered', err));
         }
       });

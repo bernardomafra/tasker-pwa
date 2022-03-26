@@ -73,7 +73,7 @@ window.addEventListener('load', () => {
       ...storageTask,
       matches: taskMachesKeywords(storageTask, searchWords),
     }));
-x
+
     if (tasksUnMatch.length) {
       tasksUnMatch.forEach((taskObject) => {
         const taskElement = document.querySelector(
@@ -98,6 +98,32 @@ x
     const warningContainer = document.getElementById('warning');
     warningContainer.remove();
     closeBottomTab();
+  };
+
+  window.showTaskOptions = (taskId) => {
+    const isWarning = footerBottomTab.childNodes[0]?.getAttribute('id') === 'warning'
+
+    if (bottomTab.isOpen && isWarning) {
+      switchCenterTab({ type: 'hide' });
+      switchCenterTab({
+        type: isTaskCompleted(taskId) ? 'uncheck-task' : 'check-task',
+      });
+    }
+    
+    if (bottomTab.isOpen && (isTaskSelected(taskId))) {
+      return bottomTab.close({
+        callback: () => {
+          unselectAllTasks();
+          switchCenterTab({ type: 'hide' });
+        },
+      });
+    }
+
+    if (!footerBottomTab.hasChildNodes()) createBottomTabButtonsElement();
+    
+    bottomTab.open({
+      callback: () => highlightSelectedTask(taskId),
+    });
   };
 
   const list = lists.find((list) => +list.id === +listId);
@@ -133,21 +159,6 @@ x
     const value = urlParams.get(param);
     return value;
   }
-
-  window.showTaskOptions = (taskId) => {
-    if (bottomTab.isOpen && isTaskSelected(taskId)) {
-      return bottomTab.close({
-        callback: () => {
-          unselectAllTasks();
-          switchCenterTab({ type: 'hide' });
-        },
-      });
-    }
-
-    bottomTab.open({
-      callback: () => highlightSelectedTask(taskId),
-    });
-  };
 
   function createTaskElement(task) {
     const li = document.createElement('li');
@@ -323,14 +334,16 @@ x
       return;
     }
 
+    tabs[0].style.display = 'flex';
+    tabs[1].style.display = 'flex';
+    tabs[2].style.display = 'flex';
+    
     if (type === 'check-task') {
       tabs[1].replaceWith(createCheckElement());
     } else if (type === 'uncheck-task') {
       tabs[1].replaceWith(createUnCheckElement());
     } else if (type === 'list-config') {
-      tabs[0].style.display = 'flex';
       tabs[1].replaceWith(createNewTaskElement());
-      tabs[2].style.display = 'flex';
     }
   }
 
