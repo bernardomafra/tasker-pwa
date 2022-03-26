@@ -28,7 +28,8 @@ body header section {
 
 body header section h1#list-page-title {
   word-break: break-word;
-  max-width: 80vw;
+  max-width: 60vw;
+  margin-top: 0px;
   text-transform: uppercase;
   font-size: var(--font-size-02);
 }
