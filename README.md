@@ -14,6 +14,19 @@
   <br/> Bernardo Martinez de Oliveira Mafra <br/>Tópicos Especiais em Sistemas de Informação: Aplicações Híbridas
 </h3>
 <br />
+
+### Table of Contents  
+[1. Descrição da aplicação](#description)  
+[2. Descrição das telas](#screens)  
+[3. Explicação dos dados do usuário](#user-data)  
+[4. Perguntas para a avaliação do App](#questions)  
+
+<br />
+
+
+<a name="description" />
+<h2 align="center"><b>Descrição da aplicação</b></h2>
+
   <p>
   A aplicação tem como objetivo controlar diferentes listas de tarefas. É simples mas com
   certeza traz uma agilidade para a organização cotidiana do usuário. Suas atividades
@@ -21,18 +34,12 @@
   lista para assuntos de tarefas diferentes e, por fim, gerenciar o estado de uma lista e de
   suas tarefas.
   </p>
-</div>
 
-
-<section id="photos-grid" >
+<!-- <section id="photos-grid" >
+  <a name="screens" />
   <br />
-  <h1 align="center"><b>Telas da aplicação</b></h1>
+  <h2 align="center"><b>Telas da aplicação</b></h2>
   <br />
-
-  <!-- | Home Page no Navegador   |Adicionar à tela inicial | Home Page no Dispositivo     |
-  |:----------:|:---------:|:--------:|
-  | ![example](/docs/home-web.png) Ao abrir no navegador devemos encontrar a opção de adicionar o app à tela| ![example](/docs/aths.png) Ao clicar em adicionar à tela incial, já podemos ver o ícone do app, o nome, e o botão para adicionar| ![example](/docs/home-app.png) Visão da página Home quando o aplicativo já está instalado no celular, sem a barra do navegador|
-   -->
 
   | _Home Page_ no Navegador   |Adicionar à tela inicial | Aplicativo na tela inicial     |
   |:----------:|:---------:|:--------:|
@@ -64,6 +71,69 @@
 
   <hr />
 
-<section>
+<section> -->
 <br />
 <br />
+
+<a name="user-data" />
+<h2 align="center"><b>Explicação dos dados do usuário</b></h2>
+<p>Os dados que a aplicação utiliza são exclusivamente para persistência de informação, pois não faz sentido o usuário cadastrar novamente todas as listas com todas tarefas toda vez que abrir o aplicativo em seu celular. Portanto, é persistido no <code>localStorage</code> informações das listas e suas respectivas tarefas.</p>
+
+
+<br />
+<em><code>Estrutura dos dados:</code></em>
+<br />
+<br />
+<div align="start">
+
+
+```json 
+{
+  "lists": [
+    {
+      "id": "1",
+      "name": "Lista 1",
+      "description": "Descrição da lista 1",
+      "tasks": [
+        {
+          "id": "1",
+          "name": "Tarefa 1",
+          "description": "Descrição da tarefa 1",
+          "completed": false
+        },
+        {
+          "id": "2",
+          "name": "Tarefa 2",
+          "description": "Descrição da tarefa 2",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Lista 2",
+      "description": "Descrição da lista 2",
+      "tasks": [
+        {
+          "id": "3",
+          "name": "Tarefa 3",
+          "description": "Descrição da tarefa 3",
+          "completed": false
+        }
+      ]
+    }
+  ]
+}
+```
+
+</div>
+
+
+<br />
+<br />
+
+<a name="questions" />
+<h2 align="center"><b>Perguntas para a avaliação do App</b></h2>
+
+
+</div>
