@@ -11,6 +11,8 @@
 ![html](https://img.shields.io/badge/HTML-_-important) ![css](https://img.shields.io/badge/CSS-_-9cf) ![js](https://img.shields.io/badge/javascript-_-yellow)
 <br />
 <h3>
+  <a href="https://tasker-pwa.bernardomafra.repl.co/" target="_blank">Link para a aplicação</a>
+
   <br/> Bernardo Martinez de Oliveira Mafra <br/>Tópicos Especiais em Sistemas de Informação: Aplicações Híbridas
 </h3>
 <br />
