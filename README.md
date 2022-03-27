@@ -35,7 +35,7 @@
   suas tarefas.
   </p>
 
-<section id="photos-grid" >
+<!-- <section id="photos-grid" >
   <a name="screens" />
   <br />
   <h2 align="center"><b>Telas da aplicação</b></h2>
@@ -71,7 +71,7 @@
 
   <hr />
 
-<section>
+<section> -->
 <br />
 <br />
 
@@ -137,24 +137,33 @@
 
 <div align="start">
 
-- [x] A aplicação é original e não uma cópia da aplicação de um colega ou de uma aplicação já existente? <code><b>Sim</b></code>
-- [x] A aplicação tem pelo menos duas interfaces (telas ou páginas) independentes? <code><b>Sim</b></code>
-- [x] A aplicação armazena e usa de forma relevante dados complexos do usuário? <code><b>Sim</b></code>
-- [x] A aplicação possui um manifesto para instalação no dispositivo do usuário? <code><b>Sim</b></code>
-
-  [Link para o arquivo do manifesto](manifest.webmanifest)
+✅ A aplicação é original e não uma cópia da aplicação de um colega ou de uma aplicação já existente? <code><b>Sim</b></code>
   
-- [x] A aplicação possui um service worker que permite o funcionamento off-line? <code><b>Sim</b></code>
-
-  [Link para o arquivo do service-worker](service-worker.js)
-- [ ] O código da minha aplicação possui comentários explicando cada operação? <code><b>Não</b></code>
+✅ A aplicação tem pelo menos duas interfaces (telas ou páginas) independentes? <code><b>Sim</b></code>
   
-  Não vejo a necessidade de comentários explicando o código, pois basta o código ser limpo, bem organizado, e claro, objetivo. Acredito ter utilizado padrões comuns de nomenclatura, separação por responsabilidades, arquitetura de arquivos organizada, variáveis de estilos, etc.
-- [x] A aplicação está funcionando corretamente? <code><b>Sim</b></code>
+✅ A aplicação armazena e usa de forma relevante dados complexos do usuário? <code><b>Sim</b></code>
+  
 
-    <img src="assets/logo-only.png" width="40px" /> [Você pode acessá-la clicando aqui](https://tasker-pwa.bernardomafra.repl.co/)
+✅ A aplicação possui um manifesto para instalação no dispositivo do usuário? <code><b>Sim</b></code>
+  
+  <a href="/manifest.webmanifest" target="_blank">Link para o arquivo do manifesto</a>
+  
+✅ A aplicação possui um service worker que permite o funcionamento off-line? <code><b>Sim</b></code>
+
+   <a href="/service-worker.js" target="_blank">Link para o arquivo do service-worker</a>
+  
+🚫 O código da minha aplicação possui comentários explicando cada operação? <code><b>Não</b></code>
+  
+  <code>Não vejo a necessidade de comentários explicando o código, pois basta o código ser limpo, bem organizado, e claro, objetivo. Acredito ter utilizado padrões comuns de nomenclatura, separação por responsabilidades, arquitetura de arquivos organizada, variáveis de estilos, etc.</code>
+
+✅  A aplicação está funcionando corretamente? <code><b>Sim</b></code>
+
+  
+  <img src="assets/logo-only.png" width="40px" /> <a href="https://tasker-pwa.bernardomafra.repl.co/" target="_blank">Você pode acessá-la clicando aqui</a>
     
-- [x] A aplicação está completa? <code><b>Sim</b></code>
+  
+✅  A aplicação está completa? <code><b>Sim</b></code>
+  
 </div>
 
 </div>
