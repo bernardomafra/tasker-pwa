@@ -29,25 +29,40 @@
   <h1 align="center"><b>Telas da aplicação</b></h1>
   <br />
 
-  <div style="display: flex; flex-wrap: wrap">
-    <figure>
-      <figcaption>Home Page no Navegador</figcaption>
-      <img src="docs/home-web.png" alt="home page on browser" width="180"/>
-    </figure>
-    <figure>
-      <figcaption>Adicionar à tela inicial</figcaption>
-      <img src="docs/aths.png" alt="home page on browser" width="180"/>
-    </figure>
-    <figure>
-      <figcaption>Home Page no Dispositivo</figcaption>
-      <img src="docs/home-app.png" alt="home page on browser" width="180"/>
-    </figure>
-    <figure>
-      <figcaption>Home Page no Dispositivo</figcaption>
-      <img src="docs/home-app.png" alt="home page on browser" width="180"/>
-    </figure>
-  </div>
+  <!-- | Home Page no Navegador   |Adicionar à tela inicial | Home Page no Dispositivo     |
+  |:----------:|:---------:|:--------:|
+  | ![example](/docs/home-web.png) Ao abrir no navegador devemos encontrar a opção de adicionar o app à tela| ![example](/docs/aths.png) Ao clicar em adicionar à tela incial, já podemos ver o ícone do app, o nome, e o botão para adicionar| ![example](/docs/home-app.png) Visão da página Home quando o aplicativo já está instalado no celular, sem a barra do navegador|
+   -->
 
+  | _Home Page_ no Navegador   |Adicionar à tela inicial | Aplicativo na tela inicial     |
+  |:----------:|:---------:|:--------:|
+  | ![example](/docs/home-web.png) Ao abrir no navegador devemos encontrar a opção de adicionar o app à tela| ![example](/docs/aths.png) Ao clicar em adicionar à tela incial, já podemos ver o ícone do app, o nome, e o botão para adicionar| ![example](/docs/app-on-hs.png) Ícone do aplicativo acessível já da tela de aplicativos do dispositivo do usuário|
+ 
+  <hr />
+
+  | _Splashcreen_   | _Home Page_ no dispositivo | Minhas Listas     |
+  |:----------:|:---------:|:--------:|
+  | ![example](/docs/splashscreen-ios.png) Aparece quando o usuário abre o aplicativo, antes de carregar completamente a primeira página| ![example](/docs/home-app.png) Visão da página Home quando o aplicativo já está instalado no celular, sem a barra do navegador| ![example](/docs/my-lists-es.png) Tela onde o usuário vê as suas listas, e se não houver, vê-se um empty-state com um botão _CTA_|
+  
+  <hr />
+
+  | Nova Lista   | Página da Lista | Nova Tarefa     |
+  |:----------:|:---------:|:--------:|
+  | ![example](/docs/new-list.png) Tela de criação de uma nova lista, onde deve ser informado o nome e uma descrição (opcional)| ![example](/docs/list-page-es.png) Tela onde o usuário vê as tarefas daquela lista, e caso não tenha tarefas, um empty-state com _CTA_| ![example](/docs/new-task.png) Tela de criação de uma nova tarefa, onde deve ser informado o nome e uma descrição (opcional)
+  
+  <hr />
+
+  | Lista - Configuração de tarefa  | Lista - Estado de tarefas | Lista - Filtro por estado     |
+  |:----------:|:---------:|:--------:|
+  | ![example](/docs/cfg.png) Tela da lista com suas tarefas, filtros, busca, configurações da tarefa e da lista (bottom-tab no footer)| ![example](/docs/task-check.png) Quando uma tarefa é concluída, ela aparece com os textos riscados e opacidade para se diferenciar| ![example](/docs/filter-check.png) Podemos também filtrar a lista das tarefas pelo seu estado: _DONE_ (Concluída) ou _TO DO_ (A Fazer)
+  
+  <hr />
+
+  | Lista - Excluir lista  | Lista - Estado de tarefas | Lista - Filtro por estado     |
+  |:----------:|:---------:|:--------:|
+  | ![example](/docs/delete-list-warning.png) Ao tentar excluir uma lista, é exibido um aviso para lembrar o usuário que todas as tarefas serão excluídas também| ![example](/docs/edit-list.png) Podemos editar nome e descrição da lista ao clicar nas configurações (bottom-tab no footer) e clicar no ícone de lápis| ![example](/docs/edit-task.png) Podemos editar nome e descrição da tarefa ao clicar no ícone de configurações (⚙️ ) e clicar no ícone de lápis (✏️)
+
+  <hr />
 
 <section>
 <br />
