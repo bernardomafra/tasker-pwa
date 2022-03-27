@@ -35,7 +35,7 @@
   suas tarefas.
   </p>
 
-<!-- <section id="photos-grid" >
+<section id="photos-grid" >
   <a name="screens" />
   <br />
   <h2 align="center"><b>Telas da aplicação</b></h2>
@@ -71,7 +71,7 @@
 
   <hr />
 
-<section> -->
+<section>
 <br />
 <br />
 
