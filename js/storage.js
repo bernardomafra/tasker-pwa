@@ -24,7 +24,7 @@ function setListInLocalStorage(list, listExists) {
     };
 
   const lists = getListsFromLocalStorage();
-  if (lists.some((storageList) => storageList.name === list.name))
+  if (lists.some((storageList) => storageList.name.toLowerCase() === list.name.toLowerCase()))
     return {
       success: false,
       message: `Já existe uma lista com o nome ${list.name}`,
@@ -58,7 +58,7 @@ function setTaskInLocalStorage(task, listId, taskExists) {
   const allLists = getListsFromLocalStorage();
   const list = allLists.find((list) => +list.id === +listId);
   if (!Array.isArray(list.tasks)) list.tasks = []
-  if (list.tasks.find((listTask) => listTask.name === task.name)) 
+  if (list.tasks.find((listTask) => listTask.name.toLowerCase() === task.name.toLowerCase())) 
     return {
       success: false,
       message: `Já existe uma tarefa na lista com o nome ${task.name}`,
