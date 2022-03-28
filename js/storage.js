@@ -24,7 +24,7 @@ function setListInLocalStorage(list, listExists) {
     };
 
   const lists = getListsFromLocalStorage();
-  if (lists.some((list) => list.name === list.name))
+  if (lists.some((storageList) => storageList.name === list.name))
     return {
       success: false,
       message: `Já existe uma lista com o nome ${list.name}`,
